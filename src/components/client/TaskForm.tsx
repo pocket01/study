@@ -38,8 +38,7 @@ const TaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
     const task: Task = {
       id: Date.now(),
       title,
-      description: "",
-      dueDate: new Date().toISOString(),
+      content: "",
     };
 
     onAddTask(task);

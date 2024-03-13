@@ -1,12 +1,12 @@
 import { createTask, deleteTask, updateTask } from "@/store";
-import { StateType, Task } from "@/types";
+import { StoreType, Task } from "@/types";
 import { useDispatch, useSelector } from "react-redux";
 import TaskForm from "./client/TaskForm";
 import TaskList from "./client/TaskList";
 
 export const AppStickyNote = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector<StateType, Task[]>((state) => state.tasks);
+  const tasks = useSelector<StoreType, Task[]>((state) => state.tasks);
 
   const handleAddTask = (task: Task) => {
     dispatch(createTask(task));
