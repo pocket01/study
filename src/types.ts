@@ -1,11 +1,13 @@
+/**
+ * タスク
+ */
 export type Task = {
   id: number;
   title: string;
-  description?: string;
-  dueDate?: string;
-  priority?: string;
-  category?: string;
-  project?: string;
+  content?: string;
 };
 
-export type StateType = { tasks: Task[] };
+/**
+ * Store
+ */
+export type StoreType = { tasks: Task[] };

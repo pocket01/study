@@ -39,8 +39,7 @@ const TaskList: React.FC<{
       {tasks.map((task) => (
         <Paper key={task.id} sx={sxTask}>
           <Typography sx={sxTitle}>{task.title}</Typography>
-          <Typography sx={sxDescription}>{task.description}</Typography>
-          <Typography sx={sxDueDate}>{task.dueDate}</Typography>
+          <Typography sx={sxDescription}>{task.content}</Typography>
           <Box sx={sxActions}>
             <IconButton onClick={() => onEditTask(task)}>
               <EditIcon />

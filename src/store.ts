@@ -1,9 +1,8 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import tasks from "./reducers/tasks";
-import { StateType } from "./types";
+import { StoreType } from "./types";
 
-const initialState: StateType = {
-  tasks: tasks,
+const initialState: StoreType = {
+  tasks: [],
 };
 
 /**
