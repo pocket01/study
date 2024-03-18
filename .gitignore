@@ -38,3 +38,6 @@ next-env.d.ts
 # django
 /django/*
 !/django/project
+
+# env
+.env_local
