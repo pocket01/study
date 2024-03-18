@@ -1,0 +1,18 @@
+<html>
+  <body>
+    {% for result in results %}
+    <div>
+      <span>タスクCD：</span>
+      <span>{{ result.cd }}</span>
+    </div>
+    <div>
+      <span>タイトル：</span>
+      <span>{{ result.title }}</span>
+    </div>
+    <div>
+      <span>内容：</span>
+      <span>{{result.content}}</span>
+    </div>
+    {% endfor %}
+  </body>
+</html>
