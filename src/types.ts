@@ -2,7 +2,7 @@
  * タスク
  */
 export type Task = {
-  id: number;
+  cd: string;
   title: string;
   content?: string;
 };

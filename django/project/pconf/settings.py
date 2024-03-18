@@ -38,6 +38,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+#CORS関連の設定
+CORS_ALLOWED = os.environ.get('CORS_ALLOWED')
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [CORS_ALLOWED]
+CSRF_TRUSTED_ORIGINS = [CORS_ALLOWED]
+CORS_PREFLIGHT_MAX_AGE = 60 * 30
 
 # Application definition
 
@@ -53,6 +59,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

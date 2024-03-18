@@ -19,7 +19,7 @@ const taskSlice = createSlice({
       };
     },
     updateTask: (state, action) => {
-      const task = state.tasks.find((task) => task.id === action.payload.id);
+      const task = state.tasks.find((task) => task.cd === action.payload.id);
       if (!task) return;
       task.title = action.payload.title;
       return state;
@@ -27,7 +27,7 @@ const taskSlice = createSlice({
     deleteTask: (state, action) => {
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.payload),
+        tasks: state.tasks.filter((task) => task.cd !== action.payload),
       };
     },
   },
