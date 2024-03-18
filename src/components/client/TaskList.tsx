@@ -30,21 +30,21 @@ const styles = {
 const TaskList: React.FC<{
   tasks: Task[];
   onEditTask: (task: Task) => void;
-  onDeleteTask: (id: number) => void;
+  onDeleteTask: (cd: string) => void;
 }> = ({ tasks, onEditTask, onDeleteTask }) => {
   const { sxTask, sxTitle, sxDescription, sxDueDate, sxActions } = styles;
 
   return (
     <>
       {tasks.map((task) => (
-        <Paper key={task.id} sx={sxTask}>
+        <Paper key={task.cd} sx={sxTask}>
           <Typography sx={sxTitle}>{task.title}</Typography>
           <Typography sx={sxDescription}>{task.content}</Typography>
           <Box sx={sxActions}>
             <IconButton onClick={() => onEditTask(task)}>
               <EditIcon />
             </IconButton>
-            <IconButton onClick={() => onDeleteTask(task.id)}>
+            <IconButton onClick={() => onDeleteTask(task.cd)}>
               <DeleteIcon />
             </IconButton>
           </Box>

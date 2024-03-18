@@ -36,7 +36,7 @@ const TaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
     }
 
     const task: Task = {
-      id: Date.now(),
+      cd: "",
       title,
       content: "",
     };
