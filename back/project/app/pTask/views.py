@@ -2,7 +2,6 @@ from .models import Task
 from logging import basicConfig, INFO, info
 from django.http import JsonResponse
 from .serializers import TaskSerializer
-import json
 
 template_name = 'pTask/'
 
