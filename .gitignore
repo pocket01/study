@@ -36,8 +36,8 @@ yarn-error.log*
 next-env.d.ts
 
 # django
-/django/*
-!/django/project
+/back/*
+!/back/project
 
 # env
 .env_local
