@@ -12,6 +12,12 @@ const taskSlice = createSlice({
   name: "tasks",
   initialState: initialState,
   reducers: {
+    setTasks: (state, action) => {
+      return {
+        ...state,
+        tasks: [...action.payload],
+      };
+    },
     createTask: (state, action) => {
       return {
         ...state,
@@ -27,7 +33,7 @@ const taskSlice = createSlice({
     deleteTask: (state, action) => {
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.cd !== action.payload),
+        tasks: state.tasks.filter((task) => task.cd !== action.payload.cd),
       };
     },
   },
@@ -37,6 +43,7 @@ const store = configureStore({
   reducer: taskSlice.reducer,
 });
 
-export const { createTask, updateTask, deleteTask } = taskSlice.actions;
+export const { setTasks, createTask, updateTask, deleteTask } =
+  taskSlice.actions;
 
 export default store;
