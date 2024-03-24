@@ -1,6 +1,6 @@
 "use client";
 
-import { Task } from "@/types";
+import { Task } from "@/app/pTask/types";
 import PTask from "./PTask";
 
 const TaskList: React.FC<{

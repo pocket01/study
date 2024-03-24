@@ -1,11 +1,11 @@
-import { createTask, setTasks } from "@/store";
-import { StoreType, Task } from "@/types";
+import { createTask, setTasks } from "@/app/pTask/store";
+import { StoreType, Task } from "@/app/pTask/types";
 import { Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PTaskForm from "./client/PTaskForm";
-import TaskList from "./client/PTaskList";
+import PTaskForm from "./components/PTaskForm";
+import TaskList from "./components/PTaskList";
 
 export const AppPTask = () => {
   const dispatch = useDispatch();
