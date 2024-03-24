@@ -1,7 +1,7 @@
 "use client";
 
-import { AppPTask } from "@/components/AppPTask";
-import store from "@/store";
+import { AppPTask } from "@/app/pTask/app";
+import store from "@/app/pTask/store";
 import { Provider } from "react-redux";
 
 export default function Home() {

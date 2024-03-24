@@ -1,7 +1,7 @@
 "use client";
 
-import { deleteTask, updateTask } from "@/store";
-import { Task } from "@/types";
+import { deleteTask, updateTask } from "@/app/pTask/store";
+import { Task } from "@/app/pTask/types";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
