@@ -2,15 +2,14 @@ import type { Meta, StoryObj } from "@storybook/react";
 import PImage from ".";
 
 const meta = {
-  title: "PDevelop/PImage",
+  title: "PImage",
   component: PImage,
   parameters: {
     layout: "center",
   },
   tags: ["autodocs"],
   argTypes: {
-    url: { defaultValue: "Primary" },
-    // sx: { defaultValue: { bgColor: "red" } },
+    src: { defaultValue: "/test.png" },
   },
 } satisfies Meta<typeof PImage>;
 
@@ -19,26 +18,26 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    url: "Primary",
-    sx: { bgcolor: "lightgreen" },
+    src: "/Primary.png",
+    sx: { width: "200px", height: "200px", backgroundColor: "lightgreen" },
   },
 };
 
 export const Secondary: Story = {
   args: {
-    url: "Secondary",
-    sx: { bgcolor: "lightblue" },
+    src: "/Secondary.png",
+    sx: { width: "100px", height: "100px", backgroundColor: "lightblue" },
   },
 };
 
 export const Large: Story = {
   args: {
-    url: "Large",
+    src: "Large.png",
   },
 };
 
 export const Small: Story = {
   args: {
-    url: "Small",
+    src: "Small.png",
   },
 };
