@@ -2,7 +2,7 @@
  * 文字列定数
  */
 
-const DateFormats = [
+const DateTimeFormats = [
   "date",
   "shortDate",
   "datetime",
@@ -15,6 +15,18 @@ const Sepalaters = ["/", ":", "-", ";"] as const
 const Colors = ["black", "white", "red", "green", "blue", "yellow"] as const
 const Sizes = ["s", "m", "l"] as const
 const PaddingPosition = ["start", "end"] as const
+const MovieFormats = [
+  "mp4",
+  "avi",
+  "mov",
+  "wmv",
+  "flv",
+  "webm",
+  "mkv",
+  "mpg2",
+  "3gp",
+  "asf",
+] as const
 
 export const StringConsts = {
   /**
@@ -25,7 +37,7 @@ export const StringConsts = {
    * shortDatetime : yy/mm/dd hh:mi:ss
    * time : hh:mi:ss
    */
-  DateFormats: DateFormats,
+  DateTimeFormats: DateTimeFormats,
   /**
    * アイコン名
    */
@@ -47,11 +59,19 @@ export const StringConsts = {
    */
   Sizes: Sizes,
   /**
-   *
+   * 0
    */
   Zero: "0",
   /**
    * パディング開始位置
    */
   PaddingPosition: PaddingPosition,
+  /**
+   * 動画形式
+   */
+  MovieFormats: MovieFormats,
+  /**
+   * デフォルトサムネイル
+   */
+  DefaultThumn: "",
 } as const satisfies Record<string, string | readonly string[]>

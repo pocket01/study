@@ -2,7 +2,7 @@
  * 型
  */
 
-import { StringConsts } from "@/consts/StrConsts"
+import { StringConsts } from "@/consts/StringConsts"
 
 /**
  * { [key:string] : T } | T
@@ -15,31 +15,36 @@ export type StrKeysType<K, T> = K extends readonly string[]
   : T
 
 /**
- * アイコンの型
+ * アイコン
  */
 export type IconType = (typeof StringConsts.Icons)[number]
 
 /**
- * 日付フォーマットの型
+ * 日付フォーマット
  */
-export type DateFormatType = (typeof StringConsts.DateFormats)[number]
+export type DateTimeFormatType = (typeof StringConsts.DateTimeFormats)[number]
 
 /**
- * パディング位置の型
+ * パディング位置
  */
 export type PaddingPositionType = (typeof StringConsts.PaddingPosition)[number]
 
 /**
- * 色の型
+ * 色
  */
 export type ColorType = (typeof StringConsts.Colors)[number]
 
 /**
- * フォントサイズの型
+ * フォントサイズ
  */
 export type FontSizeType = (typeof StringConsts.Sizes)[number]
 
 /**
- * 時間区切り文字の型
+ * 時間区切り文字
  */
 export type SepalaterType = (typeof StringConsts.Sepalaters)[number]
+
+/**
+ * 動画形式
+ */
+export type MovieFormatType = (typeof StringConsts.MovieFormats)[number]

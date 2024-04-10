@@ -2,14 +2,16 @@
  * 日時Utils
  */
 import { NumberConsts } from "@/consts/NumberConsts"
-import { StringConsts } from "@/consts/StrConsts"
-import { DateFormatType, SepalaterType } from "@/types/Types"
+import { StringConsts } from "@/consts/StringConsts"
+import { DateTimeFormatType, SepalaterType } from "@/types/Types"
 import StringUtils from "./StringUtils"
 
 const dgtOpt = "2-digit"
 const TIME_LENGTH = 2
 
-const getFormatOpt = (format: DateFormatType): Intl.DateTimeFormatOptions => {
+const getFormatOpt = (
+  format: DateTimeFormatType
+): Intl.DateTimeFormatOptions => {
   const ymd: Intl.DateTimeFormatOptions = {
     year: format === ("shortDate" || "shortDatetime") ? dgtOpt : "numeric",
     month: dgtOpt,
@@ -63,12 +65,15 @@ const getTime = (value: Date | number, sep: SepalaterType = ":") => {
 
 /**
  * dateを指定したformatでフォーマットする。
- * @param value 日付
+ * @param value 日付または秒数
  * @param format フォーマット
  * @returns フォーマット後の日付
  */
-const formatDate = (value: Date, format: DateFormatType = "date") => {
-  if (format === "time") return getTime(value)
+const formatDate = (
+  value: Date | number,
+  format: DateTimeFormatType = "date"
+) => {
+  if (typeof value === "number" || format === "time") return getTime(value)
   return value.toLocaleDateString("ja-JP", getFormatOpt(format))
 }
 
@@ -77,7 +82,7 @@ const formatDate = (value: Date, format: DateFormatType = "date") => {
  * @param format フォーマット
  * @returns
  */
-const now = (format?: DateFormatType) => {
+const now = (format?: DateTimeFormatType) => {
   return formatDate(new Date(), format)
 }
 

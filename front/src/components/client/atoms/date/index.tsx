@@ -1,16 +1,18 @@
-import { DateFormatType } from "@/types/Types"
+import { DateTimeFormatType } from "@/types/Types"
 import DateUtils from "@/util/DateUtils"
-import { Typography } from "@mui/material"
+import { Theme } from "@emotion/react"
+import { SxProps, Typography } from "@mui/material"
 
-type PDateProps = {
-  value: Date
-  format?: DateFormatType
+export type PDateTimeProps = {
+  value: Date | number
+  format?: DateTimeFormatType
+  sx?: SxProps<Theme>
 }
 
-const PDate = ({ value, format = "date" }: PDateProps) => {
+const PDateTime = ({ value, format = "date", sx }: PDateTimeProps) => {
   const { formatDate } = DateUtils
   const fixDate = formatDate(value, format)
-  return <Typography>{fixDate}</Typography>
+  return <Typography sx={sx}>{fixDate}</Typography>
 }
 
-export default PDate
+export default PDateTime

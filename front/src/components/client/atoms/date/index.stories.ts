@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import PDate from "."
+import PDateTime from "."
 
 const meta = {
   title: "PDate",
-  component: PDate,
+  component: PDateTime,
   parameters: {
     layout: "center",
   },
@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     value: { defaultValue: new Date() },
   },
-} satisfies Meta<typeof PDate>
+} satisfies Meta<typeof PDateTime>
 
 export default meta
 type Story = StoryObj<typeof meta>
