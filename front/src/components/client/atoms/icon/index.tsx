@@ -1,11 +1,11 @@
 import { EvStyleConsts } from "@/consts/EvStyleConsts"
-import { StrConsts } from "@/consts/StrConsts"
+import { IconType } from "@/types/Types"
 import { CatchingPokemonTwoTone } from "@mui/icons-material"
 import { SxProps, Theme } from "@mui/material"
 import { MouseEventHandler } from "react"
 
 type PIconProps = {
-  icon: (typeof StrConsts.Icons)[number]
+  icon: IconType
   sx?: SxProps<Theme>
   onClick?: MouseEventHandler<SVGSVGElement>
 }

@@ -8,7 +8,8 @@ type PDateProps = {
 }
 
 const PDate = ({ value, format = "date" }: PDateProps) => {
-  const fixDate = DateUtils.formatDate(value, format)
+  const { formatDate } = DateUtils
+  const fixDate = formatDate(value, format)
   return <Typography>{fixDate}</Typography>
 }
 

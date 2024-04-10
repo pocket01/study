@@ -2,8 +2,8 @@
  * 日時Utils
  */
 import { NumberConsts } from "@/consts/NumberConsts"
-import { StrConsts } from "@/consts/StrConsts"
-import { DateFormatType } from "@/types/Types"
+import { StringConsts } from "@/consts/StrConsts"
+import { DateFormatType, SepalaterType } from "@/types/Types"
 import StringUtils from "./StringUtils"
 
 const dgtOpt = "2-digit"
@@ -35,32 +35,29 @@ const getFormatOpt = (format: DateFormatType): Intl.DateTimeFormatOptions => {
  * @param sep 区切り文字
  * @returns 時間
  */
-const getTime = (
-  value: Date | number,
-  sep: (typeof StrConsts.TimeSepalater)[number] = ":"
-) => {
-  const { padStart } = StringUtils
+const getTime = (value: Date | number, sep: SepalaterType = ":") => {
+  const { padZero } = StringUtils
 
   if (typeof value === "number") {
-    const { ErorMessage } = StrConsts
+    const { ErorMessages: ErorMessage } = StringConsts
     if (!Number.isInteger(value)) return ErorMessage
 
-    const { MINUTES, SECONDS } = NumberConsts
-    const s = padStart((value % SECONDS).toString(), TIME_LENGTH)
-    const m = padStart(
-      (Math.floor(value / SECONDS) % MINUTES).toString(),
+    const { MINUTES_SIZE, SECONDS_SIZE } = NumberConsts
+    const s = padZero((value % SECONDS_SIZE).toString(), TIME_LENGTH)
+    const m = padZero(
+      (Math.floor(value / SECONDS_SIZE) % MINUTES_SIZE).toString(),
       TIME_LENGTH
     )
-    const h = padStart(
-      Math.floor(Math.floor(value / SECONDS) / MINUTES).toString(),
+    const h = padZero(
+      Math.floor(Math.floor(value / SECONDS_SIZE) / MINUTES_SIZE).toString(),
       TIME_LENGTH
     )
     return h + sep + m + sep + s
   }
 
-  const s = padStart(value.getSeconds().toString(), TIME_LENGTH)
-  const m = padStart(value.getMinutes().toString(), TIME_LENGTH)
-  const h = padStart(value.getHours().toString(), TIME_LENGTH)
+  const s = padZero(value.getSeconds().toString(), TIME_LENGTH)
+  const m = padZero(value.getMinutes().toString(), TIME_LENGTH)
+  const h = padZero(value.getHours().toString(), TIME_LENGTH)
   return h + sep + m + sep + s
 }
 
