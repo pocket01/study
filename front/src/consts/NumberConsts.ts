@@ -55,4 +55,8 @@ export const NumberConsts = {
    * 秒の個数
    */
   SECONDS_SIZE: SECONDS.length,
+  /**
+   * 1秒（1000ミリ秒）
+   */
+  SECOND_BY_MILLSEC: 1000,
 } as const satisfies Record<string, number | readonly number[]>

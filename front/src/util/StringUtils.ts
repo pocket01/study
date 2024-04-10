@@ -1,4 +1,4 @@
-import { StringConsts } from "@/consts/StrConsts"
+import { StringConsts } from "@/consts/StringConsts"
 import { PaddingPositionType } from "@/types/Types"
 
 const padStr = (
