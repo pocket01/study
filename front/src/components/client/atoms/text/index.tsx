@@ -1,9 +1,10 @@
+import { ColorType, FontSizeType } from "@/types/Types"
 import { Typography } from "@mui/material"
 
 type PTextProps = {
   value: string
-  color?: "red" | "green" | "blue" | "yellow" | "black" | "white"
-  fontSize?: "s" | "m" | "l"
+  color?: ColorType
+  fontSize?: FontSizeType
 }
 
 const PText = ({ value, color = "black", fontSize = "m" }: PTextProps) => {
