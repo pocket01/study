@@ -74,4 +74,9 @@ export const StringConsts = {
    * デフォルトサムネイル
    */
   DefaultThumn: "",
+
+  /**
+   * GoogleCookie名
+   */
+  GoogleCookieName: "pGCookie",
 } as const satisfies Record<string, string | readonly string[]>

@@ -32,6 +32,22 @@ export const NumberConsts = {
    */
   DAYS: DAYS,
   /**
+   * 日数（31日）
+   */
+  DAYS_SIZE_31: DAYS.length,
+  /**
+   * 日数（30日）
+   */
+  DAYS_SIZE_30: DAYS.length - 1,
+  /**
+   * 日数（29日）
+   */
+  DAYS_SIZE_29: DAYS.length - 2,
+  /**
+   * 日数（28日）
+   */
+  DAYS_SIZE_28: DAYS.length - 3,
+  /**
    * 時
    */
   HOURS: HOURS,

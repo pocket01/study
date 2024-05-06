@@ -1,0 +1,21 @@
+【テキスト】
+★Youtube Data API
+  https://developers.google.com/youtube/v3?hl=ja
+
+【学習範囲】
+★YouTube Data API の概要 
+  https://developers.google.com/youtube/v3/getting-started?hl=ja
+
+★実装ガイド
+  https://developers.google.com/youtube/v3/guides/implementation?hl=ja
+
+【学習メモ】
+★認証・認可(OAuth 2.0)
+  https://developers.google.com/youtube/v3/guides/authentication?hl=ja
+
+★検索リクエストAPI
+  https://developers.google.com/youtube/v3/guides/implementation/search?hl=ja
+
+★チャンネルAPI
+  https://developers.google.com/youtube/v3/guides/implementation/channels?hl=ja
+

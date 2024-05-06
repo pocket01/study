@@ -48,7 +48,7 @@ const PTask: React.FC<{
     if (isEdit) {
       await axios
         .put(
-          "http://localhost:8000/app/pTask/put/",
+          "https://localhost:8000/app/pTask/put/",
           { task: task },
           {
             headers: {
@@ -74,7 +74,7 @@ const PTask: React.FC<{
     const rtn = confirm(`「${task.cd}：${task.title}」を削除しますか？`)
     if (rtn)
       axios
-        .delete("http://localhost:8000/app/pTask/delete/", {
+        .delete("https://localhost:8000/app/pTask/delete/", {
           headers: {
             "X-CSRFToken": "BNYMLtmlpfIHB35yDqgV5Up3F5X9B3Xx",
           },
