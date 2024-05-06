@@ -16,7 +16,7 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 
 #環境変数取得
-load_dotenv(join(dirname(__file__), '../../../.env_local'))
+load_dotenv(join(dirname(__file__), '../../../.env.local'))
 DB_ENGINE = os.environ.get('DB_ENGINE')
 DB_NAME = os.environ.get('DB_NAME')
 DB_USER = os.environ.get('DB_USER')

@@ -1,17 +1,18 @@
-"use client";
+"use client"
 
-import { Task } from "@/app/pTask/types";
-import { Theme } from "@emotion/react";
-import { Button, SxProps, TextField } from "@mui/material";
-import axios from "axios";
-import { CSSProperties, useState } from "react";
+import { Task } from "@/app/pTask/types"
+import { Theme } from "@emotion/react"
+import { Button, Link, SxProps, TextField } from "@mui/material"
+import axios from "axios"
+import { redirect } from "next/navigation"
+import { CSSProperties, useState } from "react"
 
 type StylsType = {
-  sxForm: CSSProperties;
-  sxTitle: CSSProperties;
-  sxInput: SxProps<Theme>;
-  sxButton: SxProps<Theme>;
-};
+  sxForm: CSSProperties
+  sxTitle: CSSProperties
+  sxInput: SxProps<Theme>
+  sxButton: SxProps<Theme>
+}
 
 const styles: StylsType = {
   sxForm: {
@@ -29,31 +30,31 @@ const styles: StylsType = {
   sxButton: {
     marginTop: "16px",
   },
-};
+}
 
 const PTaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
   onAddTask,
 }) => {
-  const { sxForm, sxTitle, sxInput, sxButton } = styles;
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
+  const { sxForm, sxTitle, sxInput, sxButton } = styles
+  const [title, setTitle] = useState<string>("")
+  const [content, setContent] = useState<string>("")
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (title === "") {
-      return;
+      return
     }
 
     const task: Task = {
       cd: "",
       title,
       content,
-    };
+    }
 
     axios
       .post(
-        "http://localhost:8000/app/pTask/post/",
+        "https://localhost:8000/app/pTask/post/",
         { task: task },
         {
           headers: {
@@ -63,20 +64,42 @@ const PTaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
         }
       )
       .then((res) => {
-        const data = res.data;
+        const data = res.data
         if (data) {
-          onAddTask(data);
+          onAddTask(data)
         }
       })
       .catch((e) => {
-        console.error("[ERROR]" + e);
-        return undefined;
+        console.error("[ERROR]" + e)
+        return undefined
       })
       .finally(() => {
-        setTitle("");
-        setContent("");
-      });
-  };
+        setTitle("")
+        setContent("")
+      })
+  }
+
+  const auth = async () => {
+    const result = await axios.get(
+      `api/youtube/oauth/auth${window.location.search}`
+    )
+    if (result) redirect("/pTask")
+    // console.log(process.env.YT_CREDENTIALS)
+  }
+
+  const getYtVideos = async () => {
+    const result = await axios.get(
+      `/api/youtube/search${window.location.search}`
+    )
+    return result
+  }
+
+  const getYtChannels = async () => {
+    const result = await axios.get(
+      `/api/youtube/channels${window.location.search}`
+    )
+    return result
+  }
 
   return (
     <form style={sxForm} onSubmit={handleSubmit}>
@@ -98,8 +121,12 @@ const PTaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
       <Button variant="contained" color="primary" sx={sxButton} type="submit">
         追加
       </Button>
+      <Link href="/api/youtube/oauth/cert">【テスト】Google認証</Link>
+      <Button onClick={auth}>【テスト】Google認可</Button>
+      <Button onClick={getYtVideos}>【テスト】Youtube動画取得</Button>
+      <Button onClick={getYtChannels}>【テスト】Youtubeチャンネル取得</Button>
     </form>
-  );
-};
+  )
+}
 
-export default PTaskForm;
+export default PTaskForm
