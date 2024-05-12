@@ -68,7 +68,17 @@ const getOAuthTokenCookie = (): Credentials | undefined => {
   return JSON.parse(tokens)
 }
 
-const search = async () => {
+const hasOAuthTokenCookie = () => {
+  return getOAuthTokenCookie() !== undefined
+}
+
+/**
+ * 検索処理
+ * @param q 検索キーワード
+ * @param maxResults 結果最大数
+ * @returns 結果一覧
+ */
+const search = async (q: string, maxResults = 5) => {
   const credentials = getOAuthTokenCookie()
   if (!credentials) return undefined
 
@@ -80,8 +90,8 @@ const search = async () => {
   return await service.search.list({
     auth: client,
     part: ["snippet"],
-    q: "dog",
-    maxResults: 5,
+    q: q,
+    maxResults: maxResults,
     type: ["video"],
   })
 }
@@ -106,6 +116,8 @@ const YoutubeUtils = {
   createClient: createClient,
   createUrl: createUrl,
   authorization: authorization,
+  getOAuthTokenCookie: getOAuthTokenCookie,
+  hasOAuthTokenCookie: hasOAuthTokenCookie,
   search: search,
   getChannels: getChannels,
 }
