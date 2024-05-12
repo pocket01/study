@@ -3,11 +3,20 @@ import Image from "next/image"
 
 export type PImageProps = {
   src: string | StaticImport
+  width?: number | `${number}`
+  height?: number | `${number}`
   alt?: string
 }
 
-const PImage = ({ src, alt }: PImageProps) => {
-  return <Image fill src={src} alt={alt ?? "画像が見つかりません"} />
+const PImage = ({ src, width = 400, height = 300, alt }: PImageProps) => {
+  return (
+    <Image
+      src={src}
+      width={width}
+      height={height}
+      alt={alt ?? "画像が見つかりません"}
+    />
+  )
 }
 
 export default PImage

@@ -2,9 +2,8 @@
 
 import { Task } from "@/app/pTask/types"
 import { Theme } from "@emotion/react"
-import { Button, Link, SxProps, TextField } from "@mui/material"
+import { Button, SxProps, TextField } from "@mui/material"
 import axios from "axios"
-import { redirect } from "next/navigation"
 import { CSSProperties, useState } from "react"
 
 type StylsType = {
@@ -79,28 +78,6 @@ const PTaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
       })
   }
 
-  const auth = async () => {
-    const result = await axios.get(
-      `api/youtube/oauth/auth${window.location.search}`
-    )
-    if (result) redirect("/pTask")
-    // console.log(process.env.YT_CREDENTIALS)
-  }
-
-  const getYtVideos = async () => {
-    const result = await axios.get(
-      `/api/youtube/search${window.location.search}`
-    )
-    return result
-  }
-
-  const getYtChannels = async () => {
-    const result = await axios.get(
-      `/api/youtube/channels${window.location.search}`
-    )
-    return result
-  }
-
   return (
     <form style={sxForm} onSubmit={handleSubmit}>
       <h2 style={sxTitle}>タスク追加</h2>
@@ -121,10 +98,6 @@ const PTaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
       <Button variant="contained" color="primary" sx={sxButton} type="submit">
         追加
       </Button>
-      <Link href="/api/youtube/oauth/cert">【テスト】Google認証</Link>
-      <Button onClick={auth}>【テスト】Google認可</Button>
-      <Button onClick={getYtVideos}>【テスト】Youtube動画取得</Button>
-      <Button onClick={getYtChannels}>【テスト】Youtubeチャンネル取得</Button>
     </form>
   )
 }

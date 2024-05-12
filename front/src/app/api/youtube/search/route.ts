@@ -2,12 +2,26 @@
  * 検索API
  */
 import YoutubeUtils from "@/util/YoutubeUtils"
-import { NextApiResponse } from "next"
 import { NextRequest } from "next/server"
 
-export const GET = async (req: NextRequest, res: NextApiResponse) => {
-  const { search } = YoutubeUtils
-  const videos = await search()
+export const GET = async (req: NextRequest) => {
+  const { createClient, authorization, getOAuthTokenCookie, search } =
+    YoutubeUtils
+  const client = await createClient()
+
+  if (!client)
+    return new Response("[ERROR]createClient failed!", { status: 400 })
+
+  const searchParams = req.nextUrl.searchParams
+  if (!getOAuthTokenCookie()) {
+    const code = searchParams.get("code")
+    if (!(await authorization(client, code)))
+      return new Response(`Missing query parameter`, {
+        status: 400,
+      })
+  }
+
+  const videos = await search(searchParams.get("q") ?? "")
   if (!videos)
     return new Response("[ERROR]getVideos faild!", {
       status: 400,
