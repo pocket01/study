@@ -9,7 +9,6 @@ const DateTimeFormats = [
   "shortDatetime",
   "time",
 ] as const
-const Icons = ["pokeBall", "custom"] as const
 const ErrorMessages = ["[Error]Unexpected Value."] as const
 const Sepalaters = ["/", ":", "-", ";"] as const
 const Colors = ["black", "white", "red", "green", "blue", "yellow"] as const
@@ -41,7 +40,7 @@ export const StringConsts = {
   /**
    * アイコン名
    */
-  Icons: Icons,
+  Icons: ["pokeBall", "playCircle", "custom"] as const,
   /**
    * メッセージ
    */

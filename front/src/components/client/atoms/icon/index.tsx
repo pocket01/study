@@ -1,21 +1,17 @@
-import { EvStyleConsts } from "@/consts/EvStyleConsts"
 import { IconType } from "@/types/Types"
-import { CatchingPokemonTwoTone } from "@mui/icons-material"
-import { SxProps, Theme } from "@mui/material"
-import { MouseEventHandler } from "react"
+import { CatchingPokemonTwoTone, PlayCircle } from "@mui/icons-material"
+import { IconProps } from "@mui/material"
 
 type PIconProps = {
   icon: IconType
-  sx?: SxProps<Theme>
-  onClick?: MouseEventHandler<SVGSVGElement>
+  sx?: IconProps["sx"]
 }
 
-const PIcon = ({ icon = "pokeBall", sx, onClick }: PIconProps) => {
-  const { clickable } = EvStyleConsts
-
-  const fixSx = { ...sx, ...(onClick && clickable) }
+const PIcon = ({ icon = "pokeBall", sx }: PIconProps) => {
   return icon === "pokeBall" ? (
-    <CatchingPokemonTwoTone sx={fixSx} onClick={onClick} />
+    <CatchingPokemonTwoTone sx={sx} />
+  ) : icon === "playCircle" ? (
+    <PlayCircle sx={sx} />
   ) : (
     <></>
   )
