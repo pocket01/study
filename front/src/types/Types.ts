@@ -35,9 +35,9 @@ export type PaddingPositionType = (typeof StringConsts.PaddingPosition)[number]
 export type ColorType = (typeof StringConsts.Colors)[number]
 
 /**
- * フォントサイズ
+ * サイズ
  */
-export type FontSizeType = (typeof StringConsts.Sizes)[number]
+export type SizeType = (typeof StringConsts.Sizes)[number]
 
 /**
  * 時間区切り文字

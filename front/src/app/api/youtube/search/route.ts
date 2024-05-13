@@ -21,7 +21,7 @@ export const GET = async (req: NextRequest) => {
       })
   }
 
-  const videos = await search(searchParams.get("q") ?? "")
+  const videos = await search(searchParams.get("q") ?? "", 10)
   if (!videos)
     return new Response("[ERROR]getVideos faild!", {
       status: 400,

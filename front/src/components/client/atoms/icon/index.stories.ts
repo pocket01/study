@@ -16,7 +16,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const ClickablePokeball: Story = {
+export const PPokeballICon: Story = {
   args: {
     icon: "pokeBall",
     sx: {
@@ -25,16 +25,14 @@ export const ClickablePokeball: Story = {
       width: "40px",
       height: "40px",
     },
-    onClick: (e) => alert("on Click Pokeball !"),
   },
 }
 
-export const UnClickablePokeball: Story = {
+export const PPlayCircleICon: Story = {
   args: {
-    icon: "pokeBall",
+    icon: "playCircle",
     sx: {
       fontSize: 40,
-      color: "red",
       width: "40px",
       height: "40px",
     },

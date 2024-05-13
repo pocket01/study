@@ -29,15 +29,32 @@ const PYtVideos = () => {
       <Button onClick={getYtVideos}>検索</Button>
 
       <Container component={PBox} sx={{ display: "flex", margin: "auto" }}>
-        {videos.map((v) => {
+        {videos.map((v, index) => {
           const image = v.snippet?.thumbnails?.medium
           const width = image?.width ?? 0
           const height = image?.height ?? 0
 
           return (
-            <PBox width={width} height={height} margin={1}>
-              <PImage src={v.snippet?.thumbnails?.default?.url ?? ""} />
-            </PBox>
+            index < 5 && (
+              <PBox width={width} height={height} margin={1}>
+                <PImage src={v.snippet?.thumbnails?.default?.url ?? ""} />
+              </PBox>
+            )
+          )
+        })}
+      </Container>
+      <Container component={PBox} sx={{ display: "flex", margin: "auto" }}>
+        {videos.map((v, index) => {
+          const image = v.snippet?.thumbnails?.medium
+          const width = image?.width ?? 0
+          const height = image?.height ?? 0
+
+          return (
+            index >= 5 && (
+              <PBox width={width} height={height} margin={1}>
+                <PImage src={v.snippet?.thumbnails?.default?.url ?? ""} />
+              </PBox>
+            )
           )
         })}
       </Container>
