@@ -1,5 +1,5 @@
-import { createTask, setTasks } from "@/app/pTask/store"
-import { StoreType, Task } from "@/app/pTask/types"
+import { createTask, setTasks } from "@/app/portfolio/pTask/store"
+import { StoreType, Task } from "@/app/portfolio/pTask/types"
 import { Typography } from "@mui/material"
 import axios from "axios"
 import { useEffect } from "react"

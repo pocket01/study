@@ -43,7 +43,10 @@ const createUrl = async () => {
  * @param searchParams URLクエリパラメータ
  * @returns 認可情報
  */
-const authorization = async (client: OAuth2Client, code: string | null) => {
+const authorization = async (
+  client: OAuth2Client,
+  code: string | undefined
+) => {
   if (!code) return undefined
   const { tokens } = await client.getToken(code)
 
@@ -60,32 +63,24 @@ const authorization = async (client: OAuth2Client, code: string | null) => {
   return tokens
 }
 
-const getOAuthTokenCookie = (): Credentials | undefined => {
-  const tokens = cookies().get(StringConsts.GoogleCookieName)?.value
-
-  if (!tokens) return undefined
-
-  return JSON.parse(tokens)
-}
-
-const hasOAuthTokenCookie = () => {
-  return getOAuthTokenCookie() !== undefined
-}
-
 /**
  * 検索処理
+ * @param token
  * @param q 検索キーワード
  * @param maxResults 結果最大数
  * @returns 結果一覧
  */
-const search = async (q: string, maxResults = 5) => {
-  const credentials = getOAuthTokenCookie()
-  if (!credentials) return undefined
+const search = async (
+  credential: Credentials | undefined,
+  q: string,
+  maxResults = 5
+) => {
+  if (!credential) return undefined
 
   const client = await createClient()
   if (!client) return undefined
 
-  client.setCredentials(credentials)
+  client.setCredentials(credential)
   const service = google.youtube("v3")
   return await service.search.list({
     auth: client,
@@ -96,14 +91,13 @@ const search = async (q: string, maxResults = 5) => {
   })
 }
 
-const getChannels = async () => {
-  const credentials = getOAuthTokenCookie()
-  if (!credentials) return undefined
+const getChannels = async (token: string) => {
+  if (!token) return undefined
 
   const client = await createClient()
   if (!client) return undefined
 
-  client.setCredentials(credentials)
+  client.setCredentials(JSON.parse(token))
   const service = google.youtube("v3")
   return service.channels.list({
     auth: client,
@@ -116,8 +110,6 @@ const YoutubeUtils = {
   createClient: createClient,
   createUrl: createUrl,
   authorization: authorization,
-  getOAuthTokenCookie: getOAuthTokenCookie,
-  hasOAuthTokenCookie: hasOAuthTokenCookie,
   search: search,
   getChannels: getChannels,
 }

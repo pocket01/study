@@ -1,28 +1,19 @@
-import YoutubeUtils from "@/util/YoutubeUtils"
-import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck"
-import YouTubeIcon from "@mui/icons-material/YouTube"
-import { Link, List, ListItem, Typography } from "@mui/material"
+import PText from "@/components/client/atoms/text"
+import PListItem from "@/components/client/molecules/listItem"
+import { List } from "@mui/material"
+import { Suspense } from "react"
+import Loading from "./loading"
 
 const Home = () => {
-  const { hasOAuthTokenCookie } = YoutubeUtils
   return (
-    <>
-      <Typography>メニュー</Typography>
+    <Suspense fallback={<Loading />}>
+      <PText value="メニュー" />
       <List>
-        <ListItem>
-          <PlaylistAddCheckIcon />
-          <Link href="/pTask">タスク管理</Link>
-        </ListItem>
-        <ListItem>
-          <YouTubeIcon />
-          <Link
-            href={hasOAuthTokenCookie() ? "/pYtVideos" : "/api/youtube/oauth"}
-          >
-            Youtube動画
-          </Link>
-        </ListItem>
+        <PListItem text="自己紹介" link="/introduction" />
+        <PListItem text="ポートフォリオ" link="/portfolio" />
+        <PListItem text="連絡先" link="/contact" />
       </List>
-    </>
+    </Suspense>
   )
 }
 

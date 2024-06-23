@@ -11,7 +11,6 @@ const DateTimeFormats = [
 ] as const
 const ErrorMessages = ["[Error]Unexpected Value."] as const
 const Sepalaters = ["/", ":", "-", ";"] as const
-const Colors = ["black", "white", "red", "green", "blue", "yellow"] as const
 const Sizes = ["s", "m", "l"] as const
 const PaddingPosition = ["start", "end"] as const
 const MovieFormats = [
@@ -40,7 +39,7 @@ export const StringConsts = {
   /**
    * アイコン名
    */
-  Icons: ["pokeBall", "playCircle", "custom"] as const,
+  Icons: ["pokeBall", "playCircle", "task", "youTube", "custom"] as const,
   /**
    * メッセージ
    */
@@ -49,10 +48,6 @@ export const StringConsts = {
    * 時間区切り文字
    */
   Sepalaters: Sepalaters,
-  /**
-   * 色
-   */
-  Colors: Colors,
   /**
    * サイズ
    */
@@ -73,7 +68,6 @@ export const StringConsts = {
    * デフォルトサムネイル
    */
   DefaultThumn: "",
-
   /**
    * GoogleCookie名
    */

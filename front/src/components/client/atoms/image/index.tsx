@@ -8,13 +8,19 @@ export type PImageProps = {
   alt?: string
 }
 
-const PImage = ({ src, width = 400, height = 300, alt }: PImageProps) => {
+const PImage = ({ src, width, height, alt }: PImageProps) => {
+  const isFill = width === undefined && height === undefined
+  const fill = {
+    fill: isFill,
+    objectFit: isFill ? "contain" : undefined,
+  }
   return (
     <Image
       src={src}
       width={width}
       height={height}
       alt={alt ?? "画像が見つかりません"}
+      {...fill}
     />
   )
 }

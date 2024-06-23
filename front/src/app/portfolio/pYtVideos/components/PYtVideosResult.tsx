@@ -7,7 +7,7 @@ import axios from "axios"
 import { youtube_v3 } from "googleapis"
 import { useState } from "react"
 
-const PYtVideos = () => {
+const PYtVideosResult = () => {
   const [q, setQ] = useState<string>("")
   const [videos, setVideos] = useState<youtube_v3.Schema$SearchResult[]>([])
   const getYtVideos = async () => {
@@ -16,6 +16,8 @@ const PYtVideos = () => {
     >(`/api/youtube/search${window.location.search}`, { params: { q: q } })
 
     if (result.data && result.data.length) setVideos(result.data)
+    else return -1
+    return 1
   }
 
   return (
@@ -62,4 +64,4 @@ const PYtVideos = () => {
   )
 }
 
-export default PYtVideos
+export default PYtVideosResult

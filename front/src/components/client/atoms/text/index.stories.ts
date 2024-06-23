@@ -25,28 +25,28 @@ export const DefaultText: Story = {
 export const PrimaryText: Story = {
   args: {
     value: "PrimaryText",
-    color: "green",
+    color: "GREEN",
   },
 }
 
 export const InfoText: Story = {
   args: {
     value: "InfoText",
-    color: "blue",
+    color: "BLUE",
   },
 }
 
 export const WarningText: Story = {
   args: {
     value: "WarningText",
-    color: "yellow",
+    color: "YELLOW",
   },
 }
 
 export const ErrorText: Story = {
   args: {
     value: "ErrorText",
-    color: "red",
+    color: "RED",
   },
 }
 

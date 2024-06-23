@@ -52,7 +52,7 @@ export const NumberConsts = {
    */
   HOURS: HOURS,
   /**
-   * 時の個数
+   * 時数
    */
   HOURS_SIZE: HOURS.length,
   /**
@@ -60,7 +60,7 @@ export const NumberConsts = {
    */
   MINUTES: MINUTES,
   /**
-   * 分の個数
+   * 分数
    */
   MINUTES_SIZE: MINUTES.length,
   /**
@@ -68,7 +68,7 @@ export const NumberConsts = {
    */
   SECONDS: SECONDS,
   /**
-   * 秒の個数
+   * 秒数
    */
   SECONDS_SIZE: SECONDS.length,
   /**
