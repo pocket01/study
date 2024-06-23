@@ -1,6 +1,6 @@
 "use client"
 
-import { Task } from "@/app/pTask/types"
+import { Task } from "@/app/portfolio/pTask/types"
 import { Theme } from "@emotion/react"
 import { Button, SxProps, TextField } from "@mui/material"
 import axios from "axios"

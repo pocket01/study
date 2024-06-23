@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { Task } from "@/app/pTask/types";
-import PTask from "./PTask";
+import { Task } from "@/app/portfolio/pTask/types"
+import PTask from "./PTask"
 
 const TaskList: React.FC<{
-  tasks: Task[];
+  tasks: Task[]
 }> = ({ tasks }) => {
   return (
     <>
@@ -12,7 +12,7 @@ const TaskList: React.FC<{
         <PTask argTask={task} />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default TaskList;
+export default TaskList

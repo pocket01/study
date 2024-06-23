@@ -1,7 +1,7 @@
 "use client"
 
-import { deleteTask, updateTask } from "@/app/pTask/store"
-import { Task } from "@/app/pTask/types"
+import { deleteTask, updateTask } from "@/app/portfolio/pTask/store"
+import { Task } from "@/app/portfolio/pTask/types"
 import PBox from "@/components/client/atoms/container"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"

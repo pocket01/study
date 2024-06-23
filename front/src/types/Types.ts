@@ -2,17 +2,18 @@
  * 型
  */
 
+import { ColorConsts } from "@/consts/ColorConsts"
 import { StringConsts } from "@/consts/StringConsts"
 
+type StrDynamicType<T extends string, U> = { [key in T]: U }
+
 /**
- * { [key:string] : T } | T
- *
- * @param K キーとするstring配列
- * @param T 値
+ * クエリパラメータ
  */
-export type StrKeysType<K, T> = K extends readonly string[]
-  ? { [key in K[number]]: T }
-  : T
+export type SearchParamsType<T extends Record<string, string>> = StrDynamicType<
+  "searchParams",
+  T
+>
 
 /**
  * アイコン
@@ -32,7 +33,7 @@ export type PaddingPositionType = (typeof StringConsts.PaddingPosition)[number]
 /**
  * 色
  */
-export type ColorType = (typeof StringConsts.Colors)[number]
+export type ColorType = keyof typeof ColorConsts
 
 /**
  * サイズ
