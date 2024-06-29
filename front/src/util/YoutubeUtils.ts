@@ -73,15 +73,8 @@ const authorization = async (
     })
     return tokens
   } else {
-    // const value = JSON.parse(reqToken).value
-    // // TODO any → Credentials
-    // return value
-    return getRequestToken(reqToken)
+    return JSON.parse(JSON.parse(reqToken).value) as Credentials
   }
-}
-
-const getRequestToken = (reqToken: string): Credentials => {
-  return JSON.parse(reqToken).value
 }
 
 /**
@@ -102,16 +95,14 @@ const search = async (
   if (!client) return undefined
 
   client.setCredentials(credential)
-  // 6/26 つづき TODO Error: No access, refresh token, API key or refresh handler callback is set.
   const service = google.youtube('v3')
-  // return await service.search.list({
-  //   auth: client,
-  //   part: ["snippet"],
-  //   q: q,
-  //   maxResults: maxResults,
-  //   type: ["video"],
-  // });
-  return []
+  return await service.search.list({
+    auth: client,
+    part: ['snippet'],
+    q: q,
+    maxResults: maxResults,
+    type: ['video'],
+  })
 }
 
 const getChannels = async (token: string) => {

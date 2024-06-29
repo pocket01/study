@@ -16,6 +16,7 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "semi": "off",
-    "semi-style": "off"
+    "semi-style": "off",
+    "@typescript-eslint/no-explicit-any": "error"
   }
 }
