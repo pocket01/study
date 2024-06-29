@@ -4,7 +4,7 @@ import { Task } from '@/app/portfolio/pTask/types'
 import { Theme } from '@emotion/react'
 import { Button, SxProps, TextField } from '@mui/material'
 import axios from 'axios'
-import { CSSProperties, useState } from 'react'
+import { CSSProperties, FormEventHandler, useState } from 'react'
 
 type StylsType = {
   sxForm: CSSProperties
@@ -38,9 +38,7 @@ const PTaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault()
-
+  const handleSubmit = () => {
     if (title === '') {
       return
     }
