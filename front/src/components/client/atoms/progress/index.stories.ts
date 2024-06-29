@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { default as PButton, default as PProgress } from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import { default as PButton, default as PProgress } from '.'
 
 const meta = {
-  title: "PProgress",
+  title: 'PProgress',
   component: PProgress,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    mode: { defaultValue: "circle" },
+    mode: { defaultValue: 'circle' },
   },
 } satisfies Meta<typeof PButton>
 
@@ -18,12 +18,12 @@ type Story = StoryObj<typeof meta>
 
 export const PCircularProgress: Story = {
   args: {
-    mode: "circle",
+    mode: 'circle',
   },
 }
 
 export const PLinearProgress: Story = {
   args: {
-    mode: "linear",
+    mode: 'linear',
   },
 }

@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import PImage from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import PImage from '.'
 
 const meta = {
-  title: "PImage",
+  title: 'PImage',
   component: PImage,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    src: { defaultValue: "/test.png" },
+    src: { defaultValue: '/test.png' },
   },
 } satisfies Meta<typeof PImage>
 
@@ -18,6 +18,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    src: "/Primary.png",
+    src: '/Primary.png',
   },
 }

@@ -1,8 +1,8 @@
-import { IconType } from "@/types/Types"
-import { IconButton } from "@mui/material"
-import { MouseEventHandler } from "react"
-import PIcon from "../../atoms/icon"
-import PTooltip, { PTooltipProps } from "../../atoms/tooltip"
+import { IconType } from '@/types/Types'
+import { IconButton } from '@mui/material'
+import { MouseEventHandler } from 'react'
+import PIcon from '../../atoms/icon'
+import PTooltip, { PTooltipProps } from '../../atoms/tooltip'
 
 type PIconButtonProps = {
   icon: IconType

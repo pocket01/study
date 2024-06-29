@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import { deleteTask, updateTask } from "@/app/portfolio/pTask/store"
-import { Task } from "@/app/portfolio/pTask/types"
-import PBox from "@/components/client/atoms/container"
-import DeleteIcon from "@mui/icons-material/Delete"
-import EditIcon from "@mui/icons-material/Edit"
-import SaveIcon from "@mui/icons-material/Save"
+import { deleteTask, updateTask } from '@/app/portfolio/pTask/store'
+import { Task } from '@/app/portfolio/pTask/types'
+import PBox from '@/components/client/atoms/container'
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+import SaveIcon from '@mui/icons-material/Save'
 import {
   IconButton,
   Paper,
@@ -13,10 +13,10 @@ import {
   TextField,
   Theme,
   Typography,
-} from "@mui/material"
-import axios from "axios"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+} from '@mui/material'
+import axios from 'axios'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 type StylesType = {
   sxTask: SxProps<Theme>
@@ -25,14 +25,14 @@ type StylesType = {
 
 const styles: StylesType = {
   sxTask: {
-    padding: "16px",
-    margin: "8px",
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "column",
+    padding: '16px',
+    margin: '8px',
+    backgroundColor: '#fff',
+    display: 'flex',
+    flexDirection: 'column',
   },
   sxActions: {
-    float: "right",
+    float: 'right',
   },
 }
 
@@ -48,14 +48,14 @@ const PTask: React.FC<{
     if (isEdit) {
       await axios
         .put(
-          "https://localhost:8000/app/pTask/put/",
+          'https://localhost:8000/app/pTask/put/',
           { task: task },
           {
             headers: {
-              "X-CSRFToken": "BNYMLtmlpfIHB35yDqgV5Up3F5X9B3Xx",
+              'X-CSRFToken': 'BNYMLtmlpfIHB35yDqgV5Up3F5X9B3Xx',
             },
             withCredentials: true,
-          }
+          },
         )
         .then((res) => {
           const data = res.data
@@ -64,7 +64,7 @@ const PTask: React.FC<{
           }
         })
         .catch((e) => {
-          console.error("[ERROR]" + e)
+          console.error('[ERROR]' + e)
         })
     }
     setEdit((prev) => !prev)
@@ -74,9 +74,9 @@ const PTask: React.FC<{
     const rtn = confirm(`「${task.cd}：${task.title}」を削除しますか？`)
     if (rtn)
       axios
-        .delete("https://localhost:8000/app/pTask/delete/", {
+        .delete('https://localhost:8000/app/pTask/delete/', {
           headers: {
-            "X-CSRFToken": "BNYMLtmlpfIHB35yDqgV5Up3F5X9B3Xx",
+            'X-CSRFToken': 'BNYMLtmlpfIHB35yDqgV5Up3F5X9B3Xx',
           },
           withCredentials: true,
           data: { task: task },
@@ -88,7 +88,7 @@ const PTask: React.FC<{
           }
         })
         .catch((e) => {
-          console.error("[ERROR]" + e)
+          console.error('[ERROR]' + e)
           return undefined
         })
   }

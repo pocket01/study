@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import PDivider from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import PDivider from '.'
 
 const meta = {
-  title: "PDivider",
+  title: 'PDivider',
   component: PDivider,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    variant: { defaultValue: "fullWidth" },
+    variant: { defaultValue: 'fullWidth' },
   },
 } satisfies Meta<typeof PDivider>
 
@@ -18,18 +18,18 @@ type Story = StoryObj<typeof meta>
 
 export const PDefaultDivider: Story = {
   args: {
-    variant: "fullWidth",
+    variant: 'fullWidth',
   },
 }
 
 export const PInsetDivider: Story = {
   args: {
-    variant: "inset",
+    variant: 'inset',
   },
 }
 
 export const PMiddleDivider: Story = {
   args: {
-    variant: "middle",
+    variant: 'middle',
   },
 }

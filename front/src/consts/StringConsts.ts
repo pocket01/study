@@ -3,27 +3,27 @@
  */
 
 const DateTimeFormats = [
-  "date",
-  "shortDate",
-  "datetime",
-  "shortDatetime",
-  "time",
+  'date',
+  'shortDate',
+  'datetime',
+  'shortDatetime',
+  'time',
 ] as const
-const ErrorMessages = ["[Error]Unexpected Value."] as const
-const Sepalaters = ["/", ":", "-", ";"] as const
-const Sizes = ["s", "m", "l"] as const
-const PaddingPosition = ["start", "end"] as const
+const ErrorMessages = ['[Error]Unexpected Value.'] as const
+const Sepalaters = ['/', ':', '-', ';'] as const
+const Sizes = ['s', 'm', 'l'] as const
+const PaddingPosition = ['start', 'end'] as const
 const MovieFormats = [
-  "mp4",
-  "avi",
-  "mov",
-  "wmv",
-  "flv",
-  "webm",
-  "mkv",
-  "mpg2",
-  "3gp",
-  "asf",
+  'mp4',
+  'avi',
+  'mov',
+  'wmv',
+  'flv',
+  'webm',
+  'mkv',
+  'mpg2',
+  '3gp',
+  'asf',
 ] as const
 
 export const StringConsts = {
@@ -39,7 +39,7 @@ export const StringConsts = {
   /**
    * アイコン名
    */
-  Icons: ["pokeBall", "playCircle", "task", "youTube", "custom"] as const,
+  Icons: ['pokeBall', 'playCircle', 'task', 'youTube', 'custom'] as const,
   /**
    * メッセージ
    */
@@ -55,7 +55,7 @@ export const StringConsts = {
   /**
    * 0
    */
-  Zero: "0",
+  Zero: '0',
   /**
    * パディング開始位置
    */
@@ -67,9 +67,9 @@ export const StringConsts = {
   /**
    * デフォルトサムネイル
    */
-  DefaultThumn: "",
+  DefaultThumn: '',
   /**
    * GoogleCookie名
    */
-  GoogleCookieName: "pGCookie",
+  GoogleCookieName: 'pGCookie',
 } as const satisfies Record<string, string | readonly string[]>

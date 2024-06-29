@@ -2,36 +2,21 @@
  * 検索API
  */
 
-import YoutubeUtils from "@/util/YoutubeUtils"
-import { NextRequest, NextResponse } from "next/server"
+import YoutubeUtils from '@/util/YoutubeUtils'
+import { NextRequest, NextResponse } from 'next/server'
 
 export const GET = async (req: NextRequest) => {
-  const { createClient, authorization, search } = YoutubeUtils
-  const client = await createClient()
-
-  if (!client)
-    return new Response("[ERROR]createClient failed!", { status: 500 })
+  const { authorization, search } = YoutubeUtils
 
   const searchParams = req.nextUrl.searchParams
-  // TODO 型定義（現在：any）
-  let token = JSON.parse(req.headers.getSetCookie()[0]).value
-  let credential
-  if (!token) {
-    const code = searchParams.get("code") || ""
-    credential = await authorization(client, code)
-    if (!credential) {
-      return new Response(`Missing query parameter`, {
-        status: 500,
-      })
-    }
-  } else {
-    credential = JSON.parse(token)
-  }
+  const cookies = req.headers.getSetCookie()
+  const token = cookies.length ? cookies[0] : undefined
+  const credential = await authorization(token, searchParams.get('code'))
+  const videos = await search(credential, searchParams.get('q') ?? '', 10)
 
-  const videos = await search(credential, searchParams.get("q") ?? "", 10)
   if (!videos) {
-    return new Response("[ERROR]getVideos faild!", {
-      status: 500,
+    return new Response('[ERROR]getVideos faild!', {
+      status: 400,
     })
   }
 

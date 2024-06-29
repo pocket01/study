@@ -1,20 +1,17 @@
-import { StringConsts } from "@/consts/StringConsts"
-import { SearchParamsType } from "@/types/Types"
-import axios from "axios"
-import { youtube_v3 } from "googleapis"
-import { cookies } from "next/headers"
-import { AppPYtVideosResult } from "./app"
+import PYtSearchResult from '@/components/client/organisms/youtube/searchResult'
+import { StringConsts } from '@/consts/StringConsts'
+import { SearchParamsType } from '@/types/Types'
+import axios from 'axios'
+import { youtube_v3 } from 'googleapis'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 type QueryType = SearchParamsType<{
-  code: "code"
-  q: "q"
+  code: 'code'
+  q: 'q'
 }>
 
-const sleep = (time: number) => {
-  const wait = new Promise((resolve) => setTimeout(resolve, time))
-  return wait
-}
-const getYtVideos = async (q: string, code = "") => {
+const getYtVideos = async (q: string, code = '') => {
   if (!q) return undefined
 
   const result = await axios.get<youtube_v3.Schema$SearchResult[] | undefined>(
@@ -22,11 +19,11 @@ const getYtVideos = async (q: string, code = "") => {
     {
       params: { q: q, code: code },
       headers: {
-        "set-cookie": JSON.stringify(
-          cookies().get(StringConsts.GoogleCookieName)
+        'set-cookie': JSON.stringify(
+          cookies().get(StringConsts.GoogleCookieName),
         ),
       },
-    }
+    },
   )
 
   const res = {
@@ -37,16 +34,20 @@ const getYtVideos = async (q: string, code = "") => {
 }
 
 export default async function Home({ searchParams }: QueryType) {
+  const code = searchParams.code
+  const token = cookies().get(StringConsts.GoogleCookieName)?.value
+
+  if (!code && !token) redirect('/api/youtube/oauth')
+
   const q = await searchParams.q
-  const code = await searchParams.code
   const result = await getYtVideos(q, code)
 
   return (
-    <AppPYtVideosResult
-      code={code}
-      headers={result?.headers}
+    <PYtSearchResult
       defaultQuery={q}
+      headers={result?.headers}
       videos={result?.data}
+      code={code}
     />
   )
 }

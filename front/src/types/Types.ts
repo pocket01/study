@@ -2,8 +2,8 @@
  * 型
  */
 
-import { ColorConsts } from "@/consts/ColorConsts"
-import { StringConsts } from "@/consts/StringConsts"
+import { ColorConsts } from '@/consts/ColorConsts'
+import { StringConsts } from '@/consts/StringConsts'
 
 type StrDynamicType<T extends string, U> = { [key in T]: U }
 
@@ -11,7 +11,7 @@ type StrDynamicType<T extends string, U> = { [key in T]: U }
  * クエリパラメータ
  */
 export type SearchParamsType<T extends Record<string, string>> = StrDynamicType<
-  "searchParams",
+  'searchParams',
   T
 >
 

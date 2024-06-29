@@ -1,7 +1,7 @@
-import { Divider, DividerProps } from "@mui/material"
+import { Divider, DividerProps } from '@mui/material'
 
 type PDividerProps = {
-  variant?: DividerProps["variant"]
+  variant?: DividerProps['variant']
 }
 
 const PDivider = ({ variant }: PDividerProps) => {

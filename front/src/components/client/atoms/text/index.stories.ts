@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import PText from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import PText from '.'
 
 const meta = {
-  title: "PText",
+  title: 'PText',
   component: PText,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    value: { defaultValue: "" },
+    value: { defaultValue: '' },
   },
 } satisfies Meta<typeof PText>
 
@@ -18,48 +18,48 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultText: Story = {
   args: {
-    value: "DefaultText",
+    value: 'DefaultText',
   },
 }
 
 export const PrimaryText: Story = {
   args: {
-    value: "PrimaryText",
-    color: "GREEN",
+    value: 'PrimaryText',
+    color: 'GREEN',
   },
 }
 
 export const InfoText: Story = {
   args: {
-    value: "InfoText",
-    color: "BLUE",
+    value: 'InfoText',
+    color: 'BLUE',
   },
 }
 
 export const WarningText: Story = {
   args: {
-    value: "WarningText",
-    color: "YELLOW",
+    value: 'WarningText',
+    color: 'YELLOW',
   },
 }
 
 export const ErrorText: Story = {
   args: {
-    value: "ErrorText",
-    color: "RED",
+    value: 'ErrorText',
+    color: 'RED',
   },
 }
 
 export const SmallText: Story = {
   args: {
-    value: "SmallText",
-    fontSize: "s",
+    value: 'SmallText',
+    fontSize: 's',
   },
 }
 
 export const LargeText: Story = {
   args: {
-    value: "LargeText",
-    fontSize: "l",
+    value: 'LargeText',
+    fontSize: 'l',
   },
 }

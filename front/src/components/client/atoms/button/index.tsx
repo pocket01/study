@@ -1,20 +1,20 @@
-import { SizeType } from "@/types/Types"
-import { Button, ButtonProps } from "@mui/material"
+import { SizeType } from '@/types/Types'
+import { Button, ButtonProps } from '@mui/material'
 
 export type PButtonProps = {
-  children: ButtonProps["children"]
-  variant?: ButtonProps["variant"]
-  onClick?: ButtonProps["onClick"]
+  children: ButtonProps['children']
+  variant?: ButtonProps['variant']
+  onClick?: ButtonProps['onClick']
   size?: SizeType
 }
 
 const PButton = ({
   children,
-  variant = "contained",
+  variant = 'contained',
   onClick,
-  size = "m",
+  size = 'm',
 }: PButtonProps) => {
-  const buttonSize = size === "s" ? "small" : size === "l" ? "large" : "medium"
+  const buttonSize = size === 's' ? 'small' : size === 'l' ? 'large' : 'medium'
   return (
     <Button onClick={onClick} variant={variant} size={buttonSize}>
       {children}
