@@ -1,6 +1,6 @@
-import { IconType } from "@/types/Types"
-import { Link, ListItem } from "@mui/material"
-import PIcon from "../../atoms/icon"
+import { IconType } from '@/types/Types'
+import { Link, ListItem } from '@mui/material'
+import PIcon from '../../atoms/icon'
 
 type PListItemProps = {
   text: string

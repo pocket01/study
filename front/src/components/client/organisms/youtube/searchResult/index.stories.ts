@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { default as PIconButton, default as PYtSearchResult } from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import { default as PIconButton, default as PYtSearchResult } from '.'
 
 const meta = {
-  title: "PYtSearchResult",
+  title: 'PYtSearchResult',
   component: PYtSearchResult,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    defaultQuery: { defaultValue: "" },
+    defaultQuery: { defaultValue: '' },
     videos: { defaultValue: [] },
   },
 } satisfies Meta<typeof PIconButton>
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>
 export const PYtDefaultSearchResult = (): Story => {
   return {
     args: {
-      defaultQuery: "test",
+      defaultQuery: 'test',
       videos: undefined,
     },
   }

@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import { default as PBox } from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import { default as PBox } from '.'
 
 const meta = {
-  title: "PBox",
+  title: 'PBox',
   component: PBox,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 } satisfies Meta<typeof PBox>
 
 export default meta
@@ -15,6 +15,6 @@ type Story = StoryObj<typeof meta>
 
 export const PBgGreenBox: Story = {
   args: {
-    sx: { width: "192px", height: "128px", bgcolor: "green" },
+    sx: { width: '192px', height: '128px', bgcolor: 'green' },
   },
 }

@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
-import PBox from "@/components/client/atoms/container"
-import PImage from "@/components/client/atoms/image"
-import { Button, Container, TextField } from "@mui/material"
-import axios from "axios"
-import { youtube_v3 } from "googleapis"
-import { useState } from "react"
+import PBox from '@/components/client/atoms/container'
+import PImage from '@/components/client/atoms/image'
+import { Button, Container, TextField } from '@mui/material'
+import axios from 'axios'
+import { youtube_v3 } from 'googleapis'
+import { useState } from 'react'
 
 const PYtVideosResult = () => {
-  const [q, setQ] = useState<string>("")
+  const [q, setQ] = useState<string>('')
   const [videos, setVideos] = useState<youtube_v3.Schema$SearchResult[]>([])
   const getYtVideos = async () => {
     const result = await axios.get<
@@ -30,7 +30,7 @@ const PYtVideosResult = () => {
       />
       <Button onClick={getYtVideos}>検索</Button>
 
-      <Container component={PBox} sx={{ display: "flex", margin: "auto" }}>
+      <Container component={PBox} sx={{ display: 'flex', margin: 'auto' }}>
         {videos.map((v, index) => {
           const image = v.snippet?.thumbnails?.medium
           const width = image?.width ?? 0
@@ -39,13 +39,13 @@ const PYtVideosResult = () => {
           return (
             index < 5 && (
               <PBox width={width} height={height} margin={1}>
-                <PImage src={v.snippet?.thumbnails?.default?.url ?? ""} />
+                <PImage src={v.snippet?.thumbnails?.default?.url ?? ''} />
               </PBox>
             )
           )
         })}
       </Container>
-      <Container component={PBox} sx={{ display: "flex", margin: "auto" }}>
+      <Container component={PBox} sx={{ display: 'flex', margin: 'auto' }}>
         {videos.map((v, index) => {
           const image = v.snippet?.thumbnails?.medium
           const width = image?.width ?? 0
@@ -54,7 +54,7 @@ const PYtVideosResult = () => {
           return (
             index >= 5 && (
               <PBox width={width} height={height} margin={1}>
-                <PImage src={v.snippet?.thumbnails?.default?.url ?? ""} />
+                <PImage src={v.snippet?.thumbnails?.default?.url ?? ''} />
               </PBox>
             )
           )

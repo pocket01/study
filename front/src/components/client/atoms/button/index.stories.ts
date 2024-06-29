@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import PButton from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import PButton from '.'
 
 const meta = {
-  title: "PButton",
+  title: 'PButton',
   component: PButton,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    children: { defaultValue: "ボタン" },
+    children: { defaultValue: 'ボタン' },
   },
 } satisfies Meta<typeof PButton>
 
@@ -18,20 +18,20 @@ type Story = StoryObj<typeof meta>
 
 export const PMediumButton: Story = {
   args: {
-    children: "通常サイズボタン",
+    children: '通常サイズボタン',
   },
 }
 
 export const PSmallButton: Story = {
   args: {
-    children: "スモールサイズボタン",
-    size: "s",
+    children: 'スモールサイズボタン',
+    size: 's',
   },
 }
 
 export const PLargeButton: Story = {
   args: {
-    children: "ラージサイズボタン",
-    size: "l",
+    children: 'ラージサイズボタン',
+    size: 'l',
   },
 }

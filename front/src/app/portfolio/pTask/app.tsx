@@ -1,11 +1,11 @@
-import { createTask, setTasks } from "@/app/portfolio/pTask/store"
-import { StoreType, Task } from "@/app/portfolio/pTask/types"
-import { Typography } from "@mui/material"
-import axios from "axios"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import PTaskForm from "./components/PTaskForm"
-import TaskList from "./components/PTaskList"
+import { createTask, setTasks } from '@/app/portfolio/pTask/store'
+import { StoreType, Task } from '@/app/portfolio/pTask/types'
+import { Typography } from '@mui/material'
+import axios from 'axios'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import PTaskForm from './components/PTaskForm'
+import TaskList from './components/PTaskList'
 
 export const AppPTask = () => {
   const dispatch = useDispatch()
@@ -19,7 +19,7 @@ export const AppPTask = () => {
     if (!tasks.length) {
       const cancelToken = axios.CancelToken.source()
       axios
-        .get<Task[]>("http://localhost:8000/app/pTask/", {
+        .get<Task[]>('http://localhost:8000/app/pTask/', {
           cancelToken: cancelToken.token,
         })
         .then((res) => {

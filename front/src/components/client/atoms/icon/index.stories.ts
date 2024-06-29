@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import PIcon from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import PIcon from '.'
 
 const meta = {
-  title: "PIcon",
+  title: 'PIcon',
   component: PIcon,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    icon: { defaultValue: "" },
+    icon: { defaultValue: '' },
   },
 } satisfies Meta<typeof PIcon>
 
@@ -18,23 +18,23 @@ type Story = StoryObj<typeof meta>
 
 export const PPokeballICon: Story = {
   args: {
-    icon: "pokeBall",
+    icon: 'pokeBall',
     sx: {
       fontSize: 40,
-      color: "red",
-      width: "40px",
-      height: "40px",
+      color: 'red',
+      width: '40px',
+      height: '40px',
     },
   },
 }
 
 export const PPlayCircleICon: Story = {
   args: {
-    icon: "playCircle",
+    icon: 'playCircle',
     sx: {
       fontSize: 40,
-      width: "40px",
-      height: "40px",
+      width: '40px',
+      height: '40px',
     },
   },
 }

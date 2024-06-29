@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import PIconButton from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import PIconButton from '.'
 
 const meta = {
-  title: "PIconButton",
+  title: 'PIconButton',
   component: PIconButton,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 } satisfies Meta<typeof PIconButton>
 
@@ -16,10 +16,10 @@ type Story = StoryObj<typeof meta>
 
 export const Pokeball: Story = {
   args: {
-    icon: "playCircle",
-    onClick: (e) => alert("on Click playCircle !"),
+    icon: 'playCircle',
+    onClick: (e) => alert('on Click playCircle !'),
     tooltip: {
-      title: "play",
+      title: 'play',
     },
   },
 }

@@ -1,4 +1,4 @@
-import { HTMLAttributeReferrerPolicy } from "react"
+import { HTMLAttributeReferrerPolicy } from 'react'
 
 type PIFrameProps = {
   width: number
@@ -14,9 +14,9 @@ const PIFrame = ({
   width,
   height,
   src,
-  title = "",
-  allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  referrerPolicy = "strict-origin-when-cross-origin",
+  title = '',
+  allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+  referrerPolicy = 'strict-origin-when-cross-origin',
   allowFullScreen = true,
 }: PIFrameProps) => {
   return (

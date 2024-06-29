@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react"
-import PDateTime from "."
+import type { Meta, StoryObj } from '@storybook/react'
+import PDateTime from '.'
 
 const meta = {
-  title: "PDate",
+  title: 'PDate',
   component: PDateTime,
   parameters: {
-    layout: "center",
+    layout: 'center',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     value: { defaultValue: new Date() },
   },
@@ -25,13 +25,13 @@ export const PDateContents: Story = {
 export const PShortDateContents: Story = {
   args: {
     value: new Date(),
-    format: "shortDate",
+    format: 'shortDate',
   },
 }
 
 export const PTimeContents: Story = {
   args: {
     value: new Date(),
-    format: "time",
+    format: 'time',
   },
 }

@@ -1,20 +1,20 @@
-import { StringConsts } from "@/consts/StringConsts"
-import { PaddingPositionType } from "@/types/Types"
+import { StringConsts } from '@/consts/StringConsts'
+import { PaddingPositionType } from '@/types/Types'
 
 const padStr = (
   target: string,
   maxLength: number,
-  position: PaddingPositionType = "start",
-  fillStr?: string
+  position: PaddingPositionType = 'start',
+  fillStr?: string,
 ) => {
-  if (position === "start") return target.padStart(maxLength, fillStr)
+  if (position === 'start') return target.padStart(maxLength, fillStr)
   else return target.padEnd(maxLength, fillStr)
 }
 
 const padZero = (
   target: string,
   maxLength: number,
-  position?: PaddingPositionType
+  position?: PaddingPositionType,
 ) => {
   const { Zero } = StringConsts
   return padStr(target, maxLength, position, Zero)
