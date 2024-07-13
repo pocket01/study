@@ -37,10 +37,6 @@ export const StringConsts = {
    */
   DateTimeFormats: DateTimeFormats,
   /**
-   * アイコン名
-   */
-  Icons: ['pokeBall', 'playCircle', 'task', 'youTube', 'custom'] as const,
-  /**
    * メッセージ
    */
   ErorMessages: ErrorMessages,

@@ -18,7 +18,13 @@ export type SearchParamsType<T extends Record<string, string>> = StrDynamicType<
 /**
  * アイコン
  */
-export type IconType = (typeof StringConsts.Icons)[number]
+export type IconType =
+  | 'pokeBall'
+  | 'playCircle'
+  | 'task'
+  | 'youTube'
+  | 'map'
+  | 'custom'
 
 /**
  * 日付フォーマット
