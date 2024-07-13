@@ -13,6 +13,7 @@ export default function Home() {
           link='/portfolio/pYtVideos'
           icon='youTube'
         />
+        <PListItem text='GoogleMap' link='/portfolio/pMap' icon='map' />
       </List>
     </>
   )
