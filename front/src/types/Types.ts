@@ -38,11 +38,6 @@ export type PaddingPositionType = (typeof StringConsts.PaddingPosition)[number]
 export type ColorType = keyof typeof ColorConsts
 
 /**
- * サイズ
- */
-export type SizeType = (typeof StringConsts.Sizes)[number]
-
-/**
  * 時間区切り文字
  */
 export type SepalaterType = (typeof StringConsts.Sepalaters)[number]
@@ -63,8 +58,23 @@ export type DateFormatType =
   | 'YYYY/MM/DD'
   | 'YYYY/MM'
   | 'YYYY'
+  | 'MM'
+  | 'M'
+  | 'DD'
+  | 'D'
+  | 'ddd'
 
 /**
  * 日時
  */
-export type DateType = string | Date
+export type DateType = {
+  value: string | Date
+  format?: DateFormatType
+}
+
+/**
+ * カレンダー
+ */
+export type CalendarType = {
+  values: DateType[]
+}

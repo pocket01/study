@@ -52,4 +52,8 @@ export const StringConsts = {
    * GoogleCookie名
    */
   GoogleCookieName: 'pGCookie',
+  /**
+   * 曜日
+   */
+  DayOfWeeks: ['日', '月', '火', '水', '木', '金', '土'],
 } as const satisfies Record<string, string | readonly string[]>

@@ -14,6 +14,11 @@ export default function Home() {
           icon='youTube'
         />
         <PListItem text='GoogleMap' link='/portfolio/pMap' icon='map' />
+        <PListItem
+          text='カレンダー'
+          link='/portfolio/pCalendar'
+          icon='calendar'
+        />
       </List>
     </>
   )
