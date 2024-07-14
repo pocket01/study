@@ -16,7 +16,7 @@ const padStr = (
         return target.toString().padStart(maxLength, fillStr)
       else return target.toString().padEnd(maxLength, fillStr)
     default:
-      return
+      return ''
   }
 }
 
