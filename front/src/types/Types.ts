@@ -24,12 +24,8 @@ export type IconType =
   | 'task'
   | 'youTube'
   | 'map'
+  | 'calendar'
   | 'custom'
-
-/**
- * 日付フォーマット
- */
-export type DateTimeFormatType = (typeof StringConsts.DateTimeFormats)[number]
 
 /**
  * パディング位置
@@ -55,3 +51,20 @@ export type SepalaterType = (typeof StringConsts.Sepalaters)[number]
  * 動画形式
  */
 export type MovieFormatType = (typeof StringConsts.MovieFormats)[number]
+
+/**
+ * 日時フォーマット
+ */
+export type DateFormatType =
+  | 'YYYY/MM/DD HH:mm:ss SSS'
+  | 'YYYY/MM/DD HH:mm:ss'
+  | 'YYYY/MM/DD HH:mm'
+  | 'YYYY/MM/DD HH'
+  | 'YYYY/MM/DD'
+  | 'YYYY/MM'
+  | 'YYYY'
+
+/**
+ * 日時
+ */
+export type DateType = string | Date

@@ -1,94 +1,54 @@
 /**
  * 日時Utils
  */
-import { NumberConsts } from '@/consts/NumberConsts'
+
 import { StringConsts } from '@/consts/StringConsts'
-import { DateTimeFormatType, SepalaterType } from '@/types/Types'
-import StringUtils from './StringUtils'
+import { DateFormatType, DateType } from '@/types/Types'
+import dayjs from 'dayjs'
 
-const dgtOpt = '2-digit'
-const TIME_LENGTH = 2
-
-const getFormatOpt = (
-  format: DateTimeFormatType,
-): Intl.DateTimeFormatOptions => {
-  const ymd: Intl.DateTimeFormatOptions = {
-    year: format === ('shortDate' || 'shortDatetime') ? dgtOpt : 'numeric',
-    month: dgtOpt,
-    day: dgtOpt,
-  }
+/**
+ * 日時バリデーションチェック
+ * @param date チェック対象
+ * @param format フォーマット
+ * @returns チェック結果
+ */
+const valid = (date: DateType, format: DateFormatType = 'YYYY/MM/DD') => {
   switch (format) {
-    case 'date':
-    case 'shortDate':
-      return ymd
-    default:
-      return {
-        ...ymd,
-        hour: dgtOpt,
-        minute: dgtOpt,
-        second: dgtOpt,
+    case 'YYYY/MM/DD':
+      // 有効チェック
+      if (!dayjs(date, format).isValid()) return false
+
+      if (typeof date === 'string') {
+        // 桁数チェック
+        if (date.length !== 8) return false
+
+        // 存在チェック
+        const y = date.slice(0, 4)
+        const m = date.slice(4, 6)
+        const d = date.slice(6, 8)
+        if (`${y}/${m}/${d}` !== dayjs(date, format).format(format))
+          return false
       }
+
+      return true
+    default:
+      // 想定外フォーマット
+      return false
   }
 }
 
 /**
- * valueから時間を求める。
- * @param value 日時 または 秒数
- * @param sep 区切り文字
- * @returns 時間
- */
-const getTime = (value: Date | number, sep: SepalaterType = ':') => {
-  const { padZero } = StringUtils
-
-  if (typeof value === 'number') {
-    const { ErorMessages: ErorMessage } = StringConsts
-    if (!Number.isInteger(value)) return ErorMessage
-
-    const { MINUTES_SIZE, SECONDS_SIZE } = NumberConsts
-    const s = padZero((value % SECONDS_SIZE).toString(), TIME_LENGTH)
-    const m = padZero(
-      (Math.floor(value / SECONDS_SIZE) % MINUTES_SIZE).toString(),
-      TIME_LENGTH,
-    )
-    const h = padZero(
-      Math.floor(Math.floor(value / SECONDS_SIZE) / MINUTES_SIZE).toString(),
-      TIME_LENGTH,
-    )
-    return h + sep + m + sep + s
-  }
-
-  const s = padZero(value.getSeconds().toString(), TIME_LENGTH)
-  const m = padZero(value.getMinutes().toString(), TIME_LENGTH)
-  const h = padZero(value.getHours().toString(), TIME_LENGTH)
-  return h + sep + m + sep + s
-}
-
-/**
- * dateを指定したformatでフォーマットする。
- * @param value 日付または秒数
+ * 現在日時を取得する
  * @param format フォーマット
- * @returns フォーマット後の日付
+ * @returns 現在日時
  */
-const formatDate = (
-  value: Date | number,
-  format: DateTimeFormatType = 'date',
-) => {
-  if (typeof value === 'number' || format === 'time') return getTime(value)
-  return value.toLocaleDateString('ja-JP', getFormatOpt(format))
-}
-
-/**
- * 現在日時を指定したformatで取得する。
- * @param format フォーマット
- * @returns
- */
-const now = (format?: DateTimeFormatType) => {
-  return formatDate(new Date(), format)
+const now = (format: DateFormatType = 'YYYY/MM/DD') => {
+  return dayjs(new Date(), format).format(format)
 }
 
 const DateUtils = {
-  formatDate: formatDate,
-  now: now,
+  valid,
+  now,
 }
 
 export default DateUtils

@@ -2,13 +2,6 @@
  * 文字列定数
  */
 
-const DateTimeFormats = [
-  'date',
-  'shortDate',
-  'datetime',
-  'shortDatetime',
-  'time',
-] as const
 const ErrorMessages = ['[Error]Unexpected Value.'] as const
 const Sepalaters = ['/', ':', '-', ';'] as const
 const Sizes = ['s', 'm', 'l'] as const
@@ -27,15 +20,6 @@ const MovieFormats = [
 ] as const
 
 export const StringConsts = {
-  /**
-   * 日時フォーマット形式
-   * date : yyyy/mm/dd
-   * shortDate : yy/mm/dd
-   * datetime : yyyy/mm/dd hh:mi:ss
-   * shortDatetime : yy/mm/dd hh:mi:ss
-   * time : hh:mi:ss
-   */
-  DateTimeFormats: DateTimeFormats,
   /**
    * メッセージ
    */
