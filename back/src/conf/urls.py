@@ -16,10 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
+from django.middleware.csrf import get_token
 
 app_root_name = 'app'
 
+def CsrfView(req):
+    return JsonResponse({ 'token' : get_token(req) })
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('csrf/', CsrfView),
     path(app_root_name + '/pTask/', include(app_root_name + '.pTask.urls')),
 ]
