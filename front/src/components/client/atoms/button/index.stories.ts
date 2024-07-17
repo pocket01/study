@@ -25,13 +25,13 @@ export const PMediumButton: Story = {
 export const PSmallButton: Story = {
   args: {
     children: 'スモールサイズボタン',
-    size: 's',
+    sx: { fontSize: 12 },
   },
 }
 
 export const PLargeButton: Story = {
   args: {
     children: 'ラージサイズボタン',
-    size: 'l',
+    sx: { fontSize: 16 },
   },
 }
