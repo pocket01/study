@@ -19,7 +19,7 @@ export const AppPTask = () => {
     if (!tasks.length) {
       const cancelToken = axios.CancelToken.source()
       axios
-        .get<Task[]>('http://localhost:8000/app/pTask/', {
+        .get<Task[]>('http://localhost:8080/app/pTask/', {
           cancelToken: cancelToken.token,
         })
         .then((res) => {
