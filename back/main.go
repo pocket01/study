@@ -1,31 +1,51 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 	"time"
+
+	"studyGo/models"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
+func mysqlConfig() {
+	// env読み込み
+	err := godotenv.Load(".env.local")
+	if err != nil {
+		fmt.Println("Error loading .env file")
+		return
+	}
 
-type Task struct {
-	CD string `json:"cd"`
-	TITLE string `json:"title"`
-	CONTENT string `json:"content"`
-}
+	// DB設定
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbHost := os.Getenv("DB_HOST")
+	dbPort := os.Getenv("DB_PORT")
+	dbScheme := os.Getenv("DB_SCHEME")
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPassword, dbHost, dbPort, dbScheme)
 
-var tasks = []Task{
-	{
-		CD:"TASK0001",
-		TITLE:"タスク1",
-		CONTENT:"タスク1メモ",
-	},
-	{
-		CD:"TASK0002",
-		TITLE:"タスク2",
-		CONTENT:"タスク2メモ",
-	},
+	// DBに接続
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic("failed to connect database")
+	}
+
+	var task models.Task
+	result := db.Where("cd = ?", "TASK00000001").Take(&task)
+
+	if result.Error != nil {
+		fmt.Println("[error]result.Error:", result.Error)
+		return
+	}
+
+	fmt.Printf("[test]task:{%s, %s, %s}", task.Cd, task.Title, task.Content)
 }
 
 func corsConfig() *gin.Engine {
@@ -59,19 +79,14 @@ func corsConfig() *gin.Engine {
 	return r
 }
 
-// func mysqlConfig() *gin.Engine {
-// 	article := article.New()
-//     user := user.New()
-// 	lib.DBOpen()
-//     defer lib.DBClose()
-// }
-
 func createRouter() *gin.Engine {
 	r := corsConfig()
 
 	r.GET("/app/pTask/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, tasks)
+		mysqlConfig()
+		c.String(http.StatusOK, "OK")
 	})
+
 	return r
 }
 
