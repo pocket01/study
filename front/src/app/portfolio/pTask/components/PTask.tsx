@@ -47,16 +47,9 @@ const PTask: React.FC<{
   const handleEditTask = async () => {
     if (isEdit) {
       await axios
-        .put(
-          'https://localhost:8000/app/pTask/put/',
-          { task: task },
-          {
-            headers: {
-              'X-CSRFToken': 'BNYMLtmlpfIHB35yDqgV5Up3F5X9B3Xx',
-            },
-            withCredentials: true,
-          },
-        )
+        .put('http://localhost:8080/app/pTask/', task, {
+          withCredentials: true,
+        })
         .then((res) => {
           const data = res.data
           if (data) {
@@ -74,8 +67,9 @@ const PTask: React.FC<{
     const rtn = confirm(`「${task.cd}：${task.title}」を削除しますか？`)
     if (rtn)
       axios
-        .delete('https://localhost:8000/app/pTask/', {
+        .delete('http://localhost:8080/app/pTask/', {
           data: task,
+          withCredentials: true,
         })
         .then((res) => {
           const data = res.data

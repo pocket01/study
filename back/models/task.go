@@ -1,12 +1,14 @@
 package models
 
+import "time"
+
 type Task struct {
 	Cd         string `gorm:"primaryKey" json:"cd"`
 	Title      string `json:"title"`
 	Content    string `json:"content"`
-	CreateDate string `json:"createDate"`
+	CreateDate time.Time `gorm:"default:current_timestamp(3)" json:"createDate"`
 	CreateUser string `json:"createUser"`
-	UpdateDate string `json:"updateDate"`
+	UpdateDate time.Time `gorm:"default:current_timestamp(3)" json:"updateDate"`
 	UpdateUser string `json:"updateUser"`
 }
 

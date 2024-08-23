@@ -29,7 +29,7 @@ func mysqlConfig() *gorm.DB {
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
 	dbScheme := os.Getenv("DB_SCHEME")
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPassword, dbHost, dbPort, dbScheme)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", dbUser, dbPassword, dbHost, dbPort, dbScheme)
 
 	// DBに接続
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
@@ -92,16 +92,42 @@ func createRouter() *gin.Engine {
 
 		if db != nil {
 			task.Cd = newCode[0]
-			db.Create(&task)
+			db.Create(models.Task{Cd: task.Cd, Title: task.Title, Content: task.Content, CreateUser: task.CreateUser})
 		}
-
 	})
 
+	r.PUT("/app/pTask/", func(c *gin.Context) {
+		var task models.Task
+		if err := c.BindJSON(&task); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		db := mysqlConfig()
+
+		if db != nil {
+			db.Model(&task).Updates(&models.Task{Title: task.Title, Content: task.Content, UpdateUser: task.UpdateUser})
+		}
+	})
+
+	r.DELETE("/app/pTask/", func(c *gin.Context) {
+		var task models.Task
+		if err := c.BindJSON(&task); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		db := mysqlConfig()
+
+		if db != nil {
+			db.Delete(&task)
+		}
+	})
+	
 	return r
 }
 
 func main() {
 	r := createRouter()
-	// Listen and Server in 0.0.0.0:8080
 	r.Run("localhost:8080")
 }
