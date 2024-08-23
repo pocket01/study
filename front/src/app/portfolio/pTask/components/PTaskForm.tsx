@@ -50,16 +50,9 @@ const PTaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
     }
 
     axios
-      .post(
-        'https://localhost:8000/app/pTask/post/',
-        { task: task },
-        {
-          headers: {
-            'X-CSRFToken': 'BNYMLtmlpfIHB35yDqgV5Up3F5X9B3Xx',
-          },
-          withCredentials: true,
-        },
-      )
+      .post('http://localhost:8080/app/pTask/', task, {
+        withCredentials: true,
+      })
       .then((res) => {
         const data = res.data
         if (data) {
@@ -77,7 +70,7 @@ const PTaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
   }
 
   return (
-    <form style={sxForm} onSubmit={handleSubmit}>
+    <>
       <h2 style={sxTitle}>タスク追加</h2>
       <TextField
         sx={sxInput}
@@ -93,10 +86,15 @@ const PTaskForm: React.FC<{ onAddTask: (task: Task) => void }> = ({
         multiline={true}
         onChange={(e) => setContent(e.target.value)}
       />
-      <Button variant='contained' color='primary' sx={sxButton} type='submit'>
+      <Button
+        variant='contained'
+        color='primary'
+        sx={sxButton}
+        onClick={handleSubmit}
+      >
         追加
       </Button>
-    </form>
+    </>
   )
 }
 

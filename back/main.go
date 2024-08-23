@@ -15,12 +15,12 @@ import (
 	"gorm.io/gorm"
 )
 
-func mysqlConfig() {
+func mysqlConfig() *gorm.DB {
 	// env読み込み
 	err := godotenv.Load(".env.local")
 	if err != nil {
 		fmt.Println("Error loading .env file")
-		return
+		return nil
 	}
 
 	// DB設定
@@ -36,16 +36,7 @@ func mysqlConfig() {
 	if err != nil {
 		panic("failed to connect database")
 	}
-
-	var task models.Task
-	result := db.Where("cd = ?", "TASK00000001").Take(&task)
-
-	if result.Error != nil {
-		fmt.Println("[error]result.Error:", result.Error)
-		return
-	}
-
-	fmt.Printf("[test]task:{%s, %s, %s}", task.Cd, task.Title, task.Content)
+	return db
 }
 
 func corsConfig() *gin.Engine {
@@ -55,22 +46,15 @@ func corsConfig() *gin.Engine {
 		AllowOrigins: []string{
 			"https://localhost:3000",
 		},
-		// アクセスを許可したいHTTPメソッド(以下の例だとPUTやDELETEはアクセスできません)
-		AllowMethods: []string{
-			"GET",
-			"POST",
-			"PUT",
-			"DELETE",
+		AllowHeaders: []string{
+			"Content-Type",
 		},
-		// // 許可したいHTTPリクエストヘッダ
-		// AllowHeaders: []string{
-		// 	"Access-Control-Allow-Credentials",
-		// 	"Access-Control-Allow-Headers",
-		// 	"Content-Type",
-		// 	"Content-Length",
-		// 	"Accept-Encoding",
-		// 	"Authorization",
-		// },
+		AllowMethods: []string{
+			http.MethodGet,
+			http.MethodPost,
+			http.MethodPut,
+			http.MethodDelete,
+		},
 		// cookieなどの情報を必要とするかどうか
 		AllowCredentials: true,
 		// preflightリクエストの結果をキャッシュする時間
@@ -83,8 +67,34 @@ func createRouter() *gin.Engine {
 	r := corsConfig()
 
 	r.GET("/app/pTask/", func(c *gin.Context) {
-		mysqlConfig()
-		c.String(http.StatusOK, "OK")
+		db := mysqlConfig()
+		
+		var tasks []models.Task
+		result := db.Find(&tasks)
+
+		if result.Error != nil {
+			fmt.Println("[error]result.Error:", result.Error)
+		}
+		c.JSON(http.StatusOK, tasks)
+	})
+	r.POST("/app/pTask/", func(c *gin.Context) {
+		var task models.Task
+		if err := c.BindJSON(&task); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		db := mysqlConfig()
+
+		// タスクコードを新規採番
+		var newCode []string
+		db.Raw("CALL get_next_task_cd()").Scan(&newCode)
+
+		if db != nil {
+			task.Cd = newCode[0]
+			db.Create(&task)
+		}
+
 	})
 
 	return r

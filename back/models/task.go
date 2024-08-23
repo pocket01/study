@@ -1,13 +1,13 @@
 package models
 
 type Task struct {
-	Cd          string `gorm:"primaryKey;column:cd"`
-	Title       string `gorm:"column:title"`
-	Content     string `gorm:"column:content"`
-	Create_date string `gorm:"column:create_date"`
-	Create_user string `gorm:"column:create_user"`
-	Update_date string `gorm:"column:update_date"`
-	Update_user string `gorm:"column:update_user"`
+	Cd         string `gorm:"primaryKey" json:"cd"`
+	Title      string `json:"title"`
+	Content    string `json:"content"`
+	CreateDate string `json:"createDate"`
+	CreateUser string `json:"createUser"`
+	UpdateDate string `json:"updateDate"`
+	UpdateUser string `json:"updateUser"`
 }
 
 func (Task) TableName() string {

@@ -74,12 +74,8 @@ const PTask: React.FC<{
     const rtn = confirm(`「${task.cd}：${task.title}」を削除しますか？`)
     if (rtn)
       axios
-        .delete('https://localhost:8000/app/pTask/delete/', {
-          headers: {
-            'X-CSRFToken': 'BNYMLtmlpfIHB35yDqgV5Up3F5X9B3Xx',
-          },
-          withCredentials: true,
-          data: { task: task },
+        .delete('https://localhost:8000/app/pTask/', {
+          data: task,
         })
         .then((res) => {
           const data = res.data
