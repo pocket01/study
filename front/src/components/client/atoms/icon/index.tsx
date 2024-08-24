@@ -5,6 +5,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube'
 import { IconProps } from '@mui/material'
 import FmdGoodIcon from '@mui/icons-material/FmdGood'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+import PublicIcon from '@mui/icons-material/Public'
 
 type PIconProps = {
   icon?: IconType
@@ -26,6 +27,8 @@ const PIcon = ({ icon = 'custom', sx }: PIconProps) => {
         return <FmdGoodIcon />
       case 'calendar':
         return <CalendarMonthIcon />
+      case 'public':
+        return <PublicIcon />
       default:
         return <></>
     }

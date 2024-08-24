@@ -25,6 +25,7 @@ export type IconType =
   | 'youTube'
   | 'map'
   | 'calendar'
+  | 'public'
   | 'custom'
 
 /**
