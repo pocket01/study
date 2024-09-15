@@ -9427,6 +9427,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"font-awesome@npm:4.7.0":
+  version: 4.7.0
+  resolution: "font-awesome@npm:4.7.0"
+  checksum: 10c0/1c456e2939c55192eed67db9c0efb8db3e92fd357ca189ca00030eb44acffa1e9f835288d2204c14b9a9c490a7b14b7090dfaff80ded6b2473f50a923dfb41e7
+  languageName: node
+  linkType: hard
+
 "for-each@npm:^0.3.3":
   version: 0.3.3
   resolution: "for-each@npm:0.3.3"
@@ -15011,6 +15018,7 @@ __metadata:
     eslint-config-next: "npm:14.1.2"
     eslint-config-prettier: "npm:9.1.0"
     eslint-plugin-storybook: "npm:^0.8.0"
+    font-awesome: "npm:4.7.0"
     fs: "npm:^0.0.1-security"
     google-auth-library: "npm:^9.7.0"
     googleapis: "npm:^134.0.0"
