@@ -1,18 +1,32 @@
+import { BrandConsts } from '@/consts/BrandConsts'
+import { ColorConsts } from '@/consts/ColorConsts'
 import { IconType } from '@/types/Types'
+import { faLine } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CatchingPokemonTwoTone, PlayCircle } from '@mui/icons-material'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+import FmdGoodIcon from '@mui/icons-material/FmdGood'
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck'
+import PublicIcon from '@mui/icons-material/Public'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import { IconProps } from '@mui/material'
-import FmdGoodIcon from '@mui/icons-material/FmdGood'
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
-import PublicIcon from '@mui/icons-material/Public'
+import { CSSProperties } from 'react'
 
 type PIconProps = {
   icon?: IconType
   sx?: IconProps['sx']
+  fontAwesomeStyle?: CSSProperties
 }
 
-const PIcon = ({ icon = 'custom', sx }: PIconProps) => {
+const PIcon = ({
+  icon = 'custom',
+  sx,
+  fontAwesomeStyle = {
+    width: '24px',
+    height: '24px',
+    display: 'inline-block',
+  },
+}: PIconProps) => {
   const getIcon = () => {
     switch (icon) {
       case 'pokeBall':
@@ -20,15 +34,23 @@ const PIcon = ({ icon = 'custom', sx }: PIconProps) => {
       case 'playCircle':
         return <PlayCircle sx={sx} />
       case 'task':
-        return <PlaylistAddCheckIcon />
+        return <PlaylistAddCheckIcon sx={sx} />
       case 'youTube':
-        return <YouTubeIcon />
+        return <YouTubeIcon sx={{ ...sx, color: ColorConsts.YOUTUBE_RED }} />
       case 'map':
-        return <FmdGoodIcon />
+        return <FmdGoodIcon sx={sx} />
       case 'calendar':
-        return <CalendarMonthIcon />
+        return <CalendarMonthIcon sx={sx} />
       case 'public':
-        return <PublicIcon />
+        return <PublicIcon sx={sx} />
+      case 'line':
+        return (
+          <FontAwesomeIcon
+            icon={faLine}
+            color={BrandConsts.Line.color}
+            style={fontAwesomeStyle}
+          />
+        )
       default:
         return <></>
     }

@@ -39,4 +39,16 @@ export const ColorConsts = {
    * 白
    */
   WHITE: '#ffffff',
+  /**
+   * LINEコーポレートカラー
+   */
+  LINE_CORPORATE_COLOR: '#00b900',
+  /**
+   * Yahooコーポレートカラー
+   */
+  YAHOO_CORPORATE_COLOR: 'ff0033',
+  /**
+   * Youtubeレッド
+   */
+  YOUTUBE_RED: '#c4302b',
 } as const satisfies Record<string, string>
