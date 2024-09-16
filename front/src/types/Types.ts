@@ -26,6 +26,7 @@ export type IconType =
   | 'map'
   | 'calendar'
   | 'public'
+  | 'line'
   | 'custom'
 
 /**
@@ -78,4 +79,21 @@ export type DateType = {
  */
 export type CalendarType = {
   values: DateType[]
+}
+
+/**
+ * ブランド
+ */
+export type BrandType = {
+  color: string
+}
+
+/**
+ * LINEプロフィール
+ */
+export type LineProfile = {
+  userId: string
+  displayName: string
+  pictureUrl?: string
+  statusMessage?: string
 }

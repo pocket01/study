@@ -19,6 +19,16 @@ export default function Home() {
           link='/portfolio/pCalendar'
           icon='calendar'
         />
+        <PListItem
+          text='スクレイピング'
+          link='/portfolio/pScraping'
+          icon='public'
+        />
+        <PListItem
+          text='LIFFサンプル'
+          link='/portfolio/pLiffSample'
+          icon='line'
+        />
       </List>
     </>
   )
