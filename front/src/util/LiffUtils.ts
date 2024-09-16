@@ -6,7 +6,7 @@ type LiffConfig = {
 
 /**
  * LIFFの初期化処理。
- * LIFFアプリケーションを開く前に必ず本メソッドを呼び出す。
+ * LIFFアプリケーション起動前に必ず本メソッドを呼び出す。
  * @param liffId LIFFアプリケーションのLiffID
  */
 const initLiff = ({ liffId }: LiffConfig) => {
@@ -52,20 +52,38 @@ const ready = async (
 }
 
 /**
- * ログアウトする。
+ * ログインする。
  */
-const logout = async () => {
+const login = () => {
+  if (isLoggedIn()) {
+    return
+  }
+
+  liff.login()
+}
+
+/**
+ * ログアウトする。
+ * @param isClose true: ログアウト時に画面を閉じる。
+ */
+const logout = async (isClose = false) => {
   if (isLoggedIn()) {
     await liff.logout()
   }
 
-  if (liff.isInClient()) {
-    liff.closeWindow()
-  } else {
-    window.close()
+  if (isClose) {
+    if (liff.isInClient()) {
+      liff.closeWindow()
+    } else {
+      window.close()
+    }
   }
 }
 
+/**
+ * LINEプロフィールを取得する。
+ * @returns LINEプロフィール
+ */
 const getProfile = async () => {
   const isReady = await ready()
   if (isReady) {
@@ -74,4 +92,24 @@ const getProfile = async () => {
   return undefined
 }
 
-export const LiffUtils = { initLiff, isLoggedIn, ready, logout, getProfile }
+/**
+ * ユーザーとLINE公式アカウントの友だち関係を取得する。
+ * @returns ユーザーとLINE公式アカウントの友だち関係
+ */
+const getFriendship = async () => {
+  const isReady = await ready()
+  if (isReady) {
+    return await liff.getFriendship()
+  }
+  return undefined
+}
+
+export const LiffUtils = {
+  initLiff,
+  isLoggedIn,
+  ready,
+  logout,
+  login,
+  getProfile,
+  getFriendship,
+}
