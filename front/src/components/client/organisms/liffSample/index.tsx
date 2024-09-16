@@ -5,28 +5,42 @@ import { LineProfile } from '@/types/Types'
 import { LiffUtils } from '@/util/LiffUtils'
 import PButton from '../../atoms/button'
 import PText from '../../atoms/text'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TextField } from '@mui/material'
 import PBox from '../../atoms/container'
 
 LiffUtils.initLiff({ liffId: process.env.NEXT_PUBLIC_LIFF_TEST_ID as string })
 
 const PLiffSample = () => {
+  const { isLoggedIn, getProfile, getFriendship, login, logout } = LiffUtils
   const [profile, setProfile] = useState<LineProfile | undefined>(undefined)
-  const { isLoggedIn, getProfile, logout } = LiffUtils
+  const [isFriend, setFriend] = useState<boolean | undefined>(undefined)
   const [showLogout, setShowLogout] = useState<boolean>(false)
   const nfLineImageMsg = 'ここにLINEアカウントのアイコンが表示されます'
 
+  /**
+   * LINEの情報をLIFF経由で取得する。
+   */
+  const getLineInfo = useCallback(async () => {
+    const isLogin = await isLoggedIn()
+    setProfile(await getProfile())
+    setFriend((await getFriendship())?.friendFlag)
+    setShowLogout(isLogin)
+  }, [isLoggedIn, getProfile, getFriendship])
+
   useEffect(() => {
-    // ログイン済みの場合、ログアウトボタンを表示する
-    setShowLogout(isLoggedIn())
-  }, [setShowLogout, isLoggedIn])
+    getLineInfo()
+  }, [getLineInfo])
 
   return (
     <>
       <PBox sx={{ display: 'flex', alignItems: 'center' }}>
         <PText value={'LINEアカウント名：'} />
-        <TextField disabled value={profile?.displayName ?? ''} />
+        <TextField disabled defaultValue={profile?.displayName ?? ''} />
+      </PBox>
+      <PBox sx={{ display: 'flex', alignItems: 'center' }}>
+        <PText value={'LINE公式アカウントとの友だち関係：'} />
+        <TextField disabled defaultValue={isFriend} />
       </PBox>
       <PBox sx={{ mt: 2 }}>
         {profile ? (
@@ -41,20 +55,26 @@ const PLiffSample = () => {
         )}
       </PBox>
       <PBox sx={{ mt: 2 }}>
-        <PButton
-          onClick={async () => {
-            setProfile(await getProfile())
-          }}
-        >
-          LINEプロフィール取得
-        </PButton>
-        {showLogout && (
+        {showLogout ? (
+          <>
+            <PButton
+              onClick={async () => {
+                await logout()
+                setProfile(undefined)
+                setFriend(undefined)
+                setShowLogout(false)
+              }}
+            >
+              ログアウト
+            </PButton>
+          </>
+        ) : (
           <PButton
             onClick={async () => {
-              await logout()
+              await login()
             }}
           >
-            ログアウト
+            ログイン
           </PButton>
         )}
       </PBox>
