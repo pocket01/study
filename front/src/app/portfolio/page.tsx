@@ -19,9 +19,10 @@ export default function Home() {
           link='/portfolio/pCalendar'
           icon='calendar'
         />
+        {/* TODO privateリポジトリへ移動予定のため、一旦リンク無効化。 */}
         <PListItem
           text='スクレイピング'
-          link='/portfolio/pScraping'
+          // link='/portfolio/pScraping'
           icon='public'
         />
         <PListItem
