@@ -12,6 +12,10 @@ const Home = () => {
         <PListItem text='自己紹介' link='/introduction' />
         <PListItem text='ポートフォリオ' link='/portfolio' />
         <PListItem text='連絡先' link='/contact' />
+        <PListItem
+          text='ポケメモリアプロトタイプ'
+          link='/pokememoriaPrototype'
+        />
       </List>
     </Suspense>
   )
