@@ -1,154 +1,164 @@
 'use client'
 
-import { FileDownload, Share } from '@mui/icons-material'
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Link,
-  ThemeProvider,
-  Typography,
-  createTheme,
-  styled,
-} from '@mui/material'
-import PokememoriaIntro from './PokememoriaIntro'
+import { GameboyButton } from '@/components/GameboyButton'
+import { GameboyScreen } from '@/components/GameboyScreen'
+import { ANIMATION, COLORS } from '@/consts/Theme'
+import { useAudio } from '@/hooks/useAudio'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import Typography from '@mui/material/Typography'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useCallback, useEffect, useState } from 'react'
 
-// カスタムテーマの作成
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#306230',
-    },
-    secondary: {
-      main: '#8Bac0F',
-    },
-    background: {
-      default: '#9CBD9C',
-      paper: '#8Bac0F',
-    },
-  },
-  typography: {
-    fontFamily: '"Press Start 2P", cursive',
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 0,
-          textTransform: 'none',
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: 0,
-          boxShadow: 'none',
-        },
-      },
-    },
-  },
-})
+/**
+ * ホームページコンポーネント
+ */
+export default function Home() {
+  /** ダイアログの表示状態 */
+  const [showDialog, setShowDialog] = useState(false)
+  /** 音声再生の許可状態 */
+  const [audioAllowed, setAudioAllowed] = useState(false)
+  /** アニメーション開始状態 */
+  const [startAnimation, setStartAnimation] = useState(false)
+  /** アニメーション完了状態 */
+  const [animationComplete, setAnimationComplete] = useState(false)
+  /** 音声の再生状態と制御関数 */
+  const { play } = useAudio()
 
-const PixelBorder = styled(Box)(({ theme }) => ({
-  border: `4px solid ${theme.palette.primary.main}`,
-  padding: theme.spacing(2),
-}))
+  /** コンポーネントマウント時にダイアログを表示 */
+  useEffect(() => {
+    setShowDialog(true)
+  }, [])
 
-const StatBox = styled(Box)(({ theme }) => ({
-  border: `2px solid ${theme.palette.primary.main}`,
-  backgroundColor: theme.palette.background.default,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-}))
+  /** アニメーション完了時の処理 */
+  useEffect(() => {
+    if (animationComplete && audioAllowed) {
+      play('/sounds/gameboy_boot_nc93971_.wav')
+    }
+  }, [animationComplete, audioAllowed, play])
 
-export default function Component() {
+  /** 音声再生を許可するハンドラ */
+  const handleAllowAudio = useCallback(() => {
+    setAudioAllowed(true)
+    setShowDialog(false)
+    setStartAnimation(true)
+  }, [])
+
+  /** 音声再生を拒否するハンドラ */
+  const handleDenyAudio = useCallback(() => {
+    setAudioAllowed(false)
+    setShowDialog(false)
+    setStartAnimation(true)
+  }, [])
+
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', p: 2 }}>
-        <Box sx={{ maxWidth: 600, mx: 'auto' }}>
-          <PokememoriaIntro />
-          <Card>
-            <CardContent>
-              <Typography variant='h6' sx={{ mb: 2, color: 'primary.main' }}>
-                ポケモン履歴書を作成
-              </Typography>
-              <Typography variant='body2' sx={{ mb: 3, color: 'primary.main' }}>
-                あなたのポケモン体験を履歴書形式で記録しましょう。
-                懐かしのポケモンとの思い出を共有できます。
-              </Typography>
-
-              <Button
-                variant='contained'
-                fullWidth
-                size='large'
+    <Box
+      component='main'
+      sx={{
+        display: 'flex',
+        minHeight: '100vh',
+        alignItems: 'center',
+        justifyContent: 'center',
+        p: 2,
+        backgroundColor: COLORS.secondary,
+        backgroundSize: '20px 20px',
+      }}
+    >
+      <GameboyScreen>
+        {startAnimation && (
+          <AnimatePresence>
+            <motion.div
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                delay: ANIMATION.titleDelay / 1000,
+                duration: ANIMATION.duration / 1000,
+              }}
+            >
+              <Typography
+                variant='h4'
+                component='h1'
                 sx={{
-                  mb: 2,
-                  bgcolor: 'primary.main',
-                  color: 'secondary.main',
-                  '&:hover': { bgcolor: 'primary.dark' },
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  mb: 1,
+                  fontSize: '3.0rem',
+                  letterSpacing: '0.1em',
+                  color: COLORS.primary,
                 }}
               >
-                はじめる
-              </Button>
+                ポケメモリア
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                delay: ANIMATION.subtitleDelay / 1000,
+                duration: ANIMATION.duration / 1000,
+              }}
+            >
+              <Typography
+                variant='subtitle1'
+                sx={{
+                  textAlign: 'center',
+                  mb: 4,
+                  fontSize: '1.0rem',
+                  letterSpacing: '0.05em',
+                  color: COLORS.primary,
+                }}
+              >
+                Your Pokémon Memory
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                delay: ANIMATION.buttonDelay / 1000,
+                duration: ANIMATION.duration / 1000,
+              }}
+              onAnimationComplete={() => setAnimationComplete(true)}
+            >
+              <GameboyButton>スタート</GameboyButton>
+            </motion.div>
+          </AnimatePresence>
+        )}
+      </GameboyScreen>
 
-              <Grid container spacing={2} sx={{ mb: 3 }}>
-                <Grid item xs={6}>
-                  <Button
-                    variant='outlined'
-                    fullWidth
-                    startIcon={<FileDownload />}
-                    sx={{ borderColor: 'primary.main', color: 'primary.main' }}
-                  >
-                    テンプレート
-                  </Button>
-                </Grid>
-                <Grid item xs={6}>
-                  <Button
-                    variant='outlined'
-                    fullWidth
-                    startIcon={<Share />}
-                    sx={{ borderColor: 'primary.main', color: 'primary.main' }}
-                  >
-                    共有する
-                  </Button>
-                </Grid>
-              </Grid>
-
-              <Grid container spacing={2}>
-                {['テンプレート', '作成済み', '共有数'].map((label, index) => (
-                  <Grid item xs={4} key={label}>
-                    <StatBox>
-                      <Typography variant='h6' sx={{ color: 'primary.main' }}>
-                        {index === 0 ? '100+' : index === 1 ? '1000+' : '500+'}
-                      </Typography>
-                      <Typography
-                        variant='body2'
-                        sx={{ color: 'primary.main' }}
-                      >
-                        {label}
-                      </Typography>
-                    </StatBox>
-                  </Grid>
-                ))}
-              </Grid>
-            </CardContent>
-          </Card>
-
-          <Box
-            component='nav'
-            sx={{ mt: 3, display: 'flex', justifyContent: 'center', gap: 2 }}
+      <Dialog
+        open={showDialog}
+        onClose={() => setShowDialog(false)}
+        PaperProps={{
+          style: {
+            backgroundColor: COLORS.background,
+          },
+        }}
+      >
+        <DialogTitle sx={{ color: COLORS.primary }}>音声の再生許可</DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{ color: COLORS.primary }}>
+            ゲームボーイの起動音を再生してもよろしいですか？
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDenyAudio} sx={{ color: COLORS.primary }}>
+            いいえ
+          </Button>
+          <Button
+            onClick={handleAllowAudio}
+            autoFocus
+            sx={{ color: COLORS.primary }}
           >
-            {['使い方', 'プライバシー', 'お問い合わせ'].map((label) => (
-              <Link key={label} href='#' sx={{ color: 'primary.main' }}>
-                {label}
-              </Link>
-            ))}
-          </Box>
-        </Box>
-      </Box>
-    </ThemeProvider>
+            はい
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
   )
 }
