@@ -35,17 +35,3 @@ export const GAMEBOY_STYLES = {
   /** ピクセルサイズ */
   pixelSize: '2px',
 }
-
-/**
- * アニメーションの設定
- */
-export const ANIMATION = {
-  /** タイトルアニメーションの遅延時間 (ms) */
-  titleDelay: 500,
-  /** サブタイトルアニメーションの遅延時間 (ms) */
-  subtitleDelay: 1000,
-  /** ボタンアニメーションの遅延時間 (ms) */
-  buttonDelay: 1500,
-  /** アニメーションの持続時間 (ms) */
-  duration: 1000,
-}

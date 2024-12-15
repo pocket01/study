@@ -2,7 +2,8 @@
 
 import { GameboyButton } from '@/components/GameboyButton'
 import { GameboyScreen } from '@/components/GameboyScreen'
-import { ANIMATION, COLORS } from '@/consts/Theme'
+import { COLORS } from '@/consts/Theme'
+import { PFonts } from '@/font/PFonts'
 import { useAudio } from '@/hooks/useAudio'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -13,7 +14,10 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import Typography from '@mui/material/Typography'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
+
+const pkmnFont = PFonts.pkmnFont
 
 /**
  * ホームページコンポーネント
@@ -76,8 +80,8 @@ export default function Home() {
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                delay: ANIMATION.titleDelay / 1000,
-                duration: ANIMATION.duration / 1000,
+                delay: 1,
+                duration: 3,
               }}
             >
               <Typography
@@ -87,9 +91,10 @@ export default function Home() {
                   fontWeight: 'bold',
                   textAlign: 'center',
                   mb: 1,
-                  fontSize: '3.0rem',
+                  fontSize: '2.4rem',
                   letterSpacing: '0.1em',
                   color: COLORS.primary,
+                  fontFamily: pkmnFont.style.fontFamily,
                 }}
               >
                 ポケメモリア
@@ -99,9 +104,10 @@ export default function Home() {
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                delay: ANIMATION.subtitleDelay / 1000,
-                duration: ANIMATION.duration / 1000,
+                delay: 1,
+                duration: 3,
               }}
+              onAnimationComplete={() => setAnimationComplete(true)}
             >
               <Typography
                 variant='subtitle1'
@@ -111,21 +117,26 @@ export default function Home() {
                   fontSize: '1.0rem',
                   letterSpacing: '0.05em',
                   color: COLORS.primary,
+                  fontFamily: pkmnFont.style.fontFamily,
                 }}
               >
-                Your Pokémon Memory
+                YOUR POKéMON MEMORY
               </Typography>
             </motion.div>
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{
-                delay: ANIMATION.buttonDelay / 1000,
-                duration: ANIMATION.duration / 1000,
+                delay: 4,
+                duration: 1,
               }}
-              onAnimationComplete={() => setAnimationComplete(true)}
             >
-              <GameboyButton>スタート</GameboyButton>
+              <GameboyButton
+                sx={{ fontFamily: pkmnFont.style.fontFamily }}
+                href='/pokememoriaPrototype/character-creation'
+              >
+                スタート
+              </GameboyButton>
             </motion.div>
           </AnimatePresence>
         )}

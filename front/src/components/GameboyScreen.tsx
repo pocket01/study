@@ -7,7 +7,7 @@ import { COLORS } from '@/consts/Theme'
  */
 export const GameboyScreen = styled(Box)(({ theme }) => ({
   width: '100%',
-  maxWidth: '320px',
+  maxWidth: '900px',
   aspectRatio: '10 / 9',
   backgroundColor: COLORS.background,
   padding: theme.spacing(2),
